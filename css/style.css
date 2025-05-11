@@ -1,3 +1,4 @@
+/* Общие стили для всего тела документа */
 body {
     font-family: sans-serif;
     margin: 0;
@@ -6,12 +7,14 @@ body {
     color: #333;
 }
 
+/* Стили для шапки сайта */
 header {
     background-color: white;
     color: #333;
     padding: 1em 20px;
 }
 
+/* Контейнер для элементов шапки (логотип, навигация, действия) */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -20,6 +23,7 @@ header {
     margin: 0 auto;
 }
 
+/* Стили для логотипа */
 .logo-section a {
     color: #333;
     text-decoration: none;
@@ -27,6 +31,7 @@ header {
     font-weight: bold;
 }
 
+/* Стили для навигационного списка */
 nav ul {
     list-style: none;
     padding: 0;
@@ -34,17 +39,20 @@ nav ul {
     display: flex;
 }
 
+/* Стили для элементов навигационного списка */
 nav ul li {
     margin-left: 0.8em;
 }
 
+/* Стили для первой ссылки в навигации */
 nav ul li:first-child {
     margin-left: 0;
 }
 
+/* Стили для ссылок в навигации (кнопки) */
 nav a {
     display: inline-block;
-    background-color: #ADD8E6;
+    background-color: #ADD8E6; /* Нежно-голубой цвет */
     color: white;
     text-decoration: none;
     padding: 0.6em 1.2em;
@@ -53,12 +61,16 @@ nav a {
     transition: background-color 0.3s ease;
 }
 
+/* Стили для ссылок в навигации при наведении курсора */
 nav a:hover {
-    background-color: #87CEEB;
+    background-color: #87CEEB; /* Более насыщенный голубой при наведении */
 }
 
+
+
+/* Стили для кнопки "Добавить Хакатон" */
 .actions-section a.add-hackathon-button {
-    background-color: #90EE90;
+    background-color: #90EE90; /* Светло-зеленый цвет кнопки */
     color: white;
     padding: 0.8em 1.5em;
     text-decoration: none;
@@ -67,10 +79,12 @@ nav a:hover {
     transition: background-color 0.3s ease;
 }
 
+/* Стили для кнопки "Добавить Хакатон" при наведении курсора */
 .actions-section a.add-hackathon-button:hover {
     background-color: #3CB371;
 }
 
+/* Стили для основного контента страницы */
 main {
     padding: 20px;
     max-width: 1200px;
@@ -80,26 +94,31 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Стили для секции новостей */
 #news {
     margin-bottom: 20px;
     padding: 15px;
     border-bottom: 1px solid #eee;
 }
 
+/* Стили для каждого элемента новости */
 .news-item {
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
 
+/* Стили для последнего элемента новости (убираем нижнюю границу) */
 .news-item:last-child {
     border-bottom: none;
 }
 
+/* Стили для секции "О проекте" */
 #about {
     padding: 15px;
 }
 
+/* Стили для подвала сайта */
 footer {
     background-color: #333;
     color: white;
