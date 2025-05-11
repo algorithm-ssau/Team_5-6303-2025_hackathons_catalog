@@ -12,6 +12,7 @@ header {
     background-color: white;
     color: #333;
     padding: 1em 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавим небольшую тень для выделения шапки */
 }
 
 /* Контейнер для элементов шапки (логотип, навигация, действия) */
@@ -41,10 +42,10 @@ nav ul {
 
 /* Стили для элементов навигационного списка */
 nav ul li {
-    margin-left: 0.8em;
+    margin-left: 0.8em; /* Отступ слева для всех элементов, кроме первого */
 }
 
-/* Стили для первой ссылки в навигации */
+/* Стили для первой ссылки в навигации (если нужно убрать левый отступ) */
 nav ul li:first-child {
     margin-left: 0;
 }
@@ -53,7 +54,7 @@ nav ul li:first-child {
 nav a {
     display: inline-block;
     background-color: #ADD8E6; /* Нежно-голубой цвет */
-    color: white;
+    color: white; /* Изменен на белый для лучшего контраста с голубым фоном */
     text-decoration: none;
     padding: 0.6em 1.2em;
     border-radius: 20px;
@@ -71,7 +72,7 @@ nav a:hover {
 /* Стили для кнопки "Добавить Хакатон" */
 .actions-section a.add-hackathon-button {
     background-color: #90EE90; /* Светло-зеленый цвет кнопки */
-    color: white;
+    color: white; /* Текст кнопки белый для контраста */
     padding: 0.8em 1.5em;
     text-decoration: none;
     border-radius: 5px;
@@ -81,41 +82,71 @@ nav a:hover {
 
 /* Стили для кнопки "Добавить Хакатон" при наведении курсора */
 .actions-section a.add-hackathon-button:hover {
-    background-color: #3CB371;
+    background-color: #3CB371; /* Более темный зеленый при наведении */
 }
 
 /* Стили для основного контента страницы */
 main {
     padding: 20px;
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 20px auto; /* Отступы сверху/снизу и авто по бокам для центрирования */
     background-color: white;
-    border-radius: 5px;
+    border-radius: 8px; /* Немного увеличим радиус скругления */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Стили для секции новостей */
 #news {
+    margin-bottom: 30px; /* Увеличим отступ снизу */
+    padding: 20px; /* Внутренние отступы для секции */
+    /* border-bottom: 1px solid #eee; */ /* Можно убрать, если каждая новость имеет свою границу */
+}
+
+#news h2, #about h2 { /* Общие стили для заголовков секций */
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #ADD8E6; /* Подчеркивание в цвет навигации */
+    padding-bottom: 10px;
     margin-bottom: 20px;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
 }
 
 /* Стили для каждого элемента новости */
 .news-item {
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 20px; /* Отступ между новостями */
+    padding-bottom: 20px; /* Внутренний отступ снизу для контента новости */
+    border-bottom: 1px solid #f0f0f0; /* Более светлая граница */
 }
 
 /* Стили для последнего элемента новости (убираем нижнюю границу) */
 .news-item:last-child {
     border-bottom: none;
+    margin-bottom: 0; /* Убираем лишний отступ у последнего элемента */
 }
+
+.news-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.news-item p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}
+
+.news-item a {
+    color: #87CEEB;
+    text-decoration: none;
+    font-weight: bold;
+}
+.news-item a:hover {
+    text-decoration: underline;
+}
+
 
 /* Стили для секции "О проекте" */
 #about {
-    padding: 15px;
+    padding: 20px;
+    line-height: 1.6;
 }
 
 /* Стили для подвала сайта */
@@ -123,8 +154,8 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 1em 0;
-    position: static;
+    padding: 1.5em 0; /* Немного увеличим отступы */
+    position: static; /* Или relative, если нет прилипания */
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px; /* Увеличим отступ сверху */
 }
