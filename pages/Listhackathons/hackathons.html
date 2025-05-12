@@ -30,6 +30,44 @@
     <main>
         <h1>Список хакатонов</h1>
 
+        <!-- Секция фильтров -->
+        <section id="filters">
+            <h2>Фильтры</h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="filter-date-from">Дата с:</label>
+                    <input type="date" id="filter-date-from">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-date-to">Дата по:</label>
+                    <input type="date" id="filter-date-to">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-spec">Спецификация:</label>
+                    <select id="filter-spec">
+                        <option value="all">Все</option>
+                        <option value="Веб-разработка">Веб-разработка</option>
+                        <option value="Мобильная разработка">Мобильная разработка</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="GameDev">GameDev</option>
+                        <option value="AI/ML">AI/ML</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-organizer">Организатор:</label>
+                    <select id="filter-organizer">
+                        <option value="all">Все</option>
+                        <option value="Яндекс">Яндекс</option>
+                        <option value="VK">VK</option>
+                        <option value="Сбер">Сбер</option>
+                        <option value="Tinkoff">Tinkoff</option>
+                    </select>
+                </div>
+                <button id="apply-filters-btn">Применить фильтры</button>
+                <button id="reset-filters-btn">Сбросить фильтры</button>
+            </div>
+        </section>
+
         <!-- Сетка с карточками хакатонов -->
         <section id="hackathon-list">
             <h2>Актуальные хакатоны</h2>
@@ -39,10 +77,12 @@
                          data-title="Летний Код"
                          data-organizer="Яндекс"
                          data-date="15-17 Июля 2025"
+                         data-start-date="2025-07-15"
+                         data-end-date="2025-07-17"
                          data-specs='["Веб-разработка", "AI/ML"]'
-                         data-img-src="../images_hackathons/hack1.png"
+                         data-img-src="images_hackathons/hack1.png"
                          data-full-description="Присоединяйтесь к летнему марафону кодинга от Яндекса! Разработайте веб-сервис с использованием AI для решения актуальных задач. Лучшие команды получат призы и возможность стажировки. Отличный шанс показать себя и поработать с экспертами индустрии.">
-                    <img src="../images_hackathons/hack1.png" alt="Логотип Летний Код">
+                    <img src="images_hackathons/hack1.png" alt="Логотип Летний Код">
                     <h3>Летний Код</h3>
                     <p><strong>Организатор:</strong> <span class="organizer">Яндекс</span></p>
                     <p><strong>Дата:</strong> <span class="date-display">15-17 Июля 2025</span></p>
@@ -51,18 +91,19 @@
                         <span class="spec-tag">Веб-разработка</span>
                         <span class="spec-tag">AI/ML</span>
                     </div>
-
-                    <button class="open-details-btn">Подробнее</button>
+                    <button class="open-modal-btn">Записаться</button>
                 </article>
 
                 <article class="hackathon-card"
                          data-title="Mobile Challenge"
                          data-organizer="VK"
                          data-date="5-7 Августа 2025"
+                         data-start-date="2025-08-05"
+                         data-end-date="2025-08-07"
                          data-specs='["Мобильная разработка"]'
-                         data-img-src="../images_hackathons/hack2.png"
+                         data-img-src="images_hackathons/hack2.png"
                          data-full-description="VK приглашает мобильных разработчиков на Mobile Challenge! Создайте инновационное мобильное приложение для iOS или Android. Тема будет объявлена на старте. Фокус на UI/UX и производительности.">
-                    <img src="../images_hackathons/hack2.png" alt="Логотип Mobile Challenge">
+                    <img src="images_hackathons/hack2.png" alt="Логотип Mobile Challenge">
                     <h3>Mobile Challenge</h3>
                     <p><strong>Организатор:</strong> <span class="organizer">VK</span></p>
                     <p><strong>Дата:</strong> <span class="date-display">5-7 Августа 2025</span></p>
@@ -70,17 +111,19 @@
                         <strong>Спецификации:</strong>
                         <span class="spec-tag">Мобильная разработка</span>
                     </div>
-                    <button class="open-details-btn">Подробнее</button>
+                    <button class="open-modal-btn">Записаться</button>
                 </article>
 
                 <article class="hackathon-card"
                          data-title="Data Science Cup"
                          data-organizer="Сбер"
                          data-date="20 Сентября 2025"
+                         data-start-date="2025-09-20"
+                         data-end-date="2025-09-20"
                          data-specs='["Data Science", "AI/ML"]'
-                         data-img-src="../images_hackathons/hack3.png"
+                         data-img-src="images_hackathons/hack3.png"
                          data-full-description="Соревнование для специалистов по данным от Сбера. Решайте реальные задачи на больших данных, стройте предсказательные модели. Используйте любые инструменты, покажите свои навыки!">
-                    <img src="../images_hackathons/hack3.png" alt="Логотип Data Science Cup">
+                    <img src="images_hackathons/hack3.png" alt="Логотип Data Science Cup">
                     <h3>Data Science Cup</h3>
                     <p><strong>Организатор:</strong> <span class="organizer">Сбер</span></p>
                     <p><strong>Дата:</strong> <span class="date-display">20 Сентября 2025</span></p>
@@ -89,17 +132,19 @@
                         <span class="spec-tag">Data Science</span>
                         <span class="spec-tag">AI/ML</span>
                     </div>
-                    <button class="open-details-btn">Подробнее</button>
+                    <button class="open-modal-btn">Записаться</button>
                 </article>
 
                  <article class="hackathon-card"
                          data-title="Tinkoff FinTech"
                          data-organizer="Tinkoff"
                          data-date="10-12 Октября 2025"
+                         data-start-date="2025-10-10"
+                         data-end-date="2025-10-12"
                          data-specs='["Веб-разработка", "Мобильная разработка", "Data Science"]'
-                         data-img-src="../images_hackathons/hack4.png"
+                         data-img-src="images_hackathons/hack4.png"
                          data-full-description="Хакатон от Tinkoff для тех, кто хочет менять мир финансов. Разработайте прототип финтех-продукта или сервиса. Возможность получить оффер и реализовать свою идею.">
-                    <img src="../images_hackathons/hack4.png" alt="Логотип Tinkoff FinTech">
+                    <img src="images_hackathons/hack4.png" alt="Логотип Tinkoff FinTech">
                     <h3>Tinkoff FinTech</h3>
                     <p><strong>Организатор:</strong> <span class="organizer">Tinkoff</span></p>
                     <p><strong>Дата:</strong> <span class="date-display">10-12 Октября 2025</span></p>
@@ -109,7 +154,7 @@
                         <span class="spec-tag">Мобильная разработка</span>
                         <span class="spec-tag">Data Science</span>
                     </div>
-                    <button class="open-details-btn">Подробнее</button>
+                    <button class="open-modal-btn">Записаться</button>
                 </article>
 
             </div>
@@ -121,7 +166,7 @@
         <p>© 2025 HackathonRadar. Все права защищены.</p>
     </footer>
 
-    <!--Детали хакатона -->
+    <!-- Модальное окно №1: Детали хакатона -->
     <div id="details-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="close-details-modal">×</span>
@@ -132,7 +177,32 @@
                 <p><strong>Дата:</strong> <span id="modal-date"></span></p>
                 <div id="modal-specs"><strong>Спецификации:</strong> </div>
                 <p id="modal-description"></p>
+                <button id="open-signup-form-btn" class="signup-button-modal">Записаться</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно №2: Форма записи -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-signup-modal">×</span>
+            <h2>Запись на хакатон: <span id="signup-hackathon-title"></span></h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Ваше ФИО:</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Ваш Email:</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-telegram">Ваш ник в Telegram (@ник):</label>
+                    <input type="text" id="signup-telegram" name="telegram" required pattern="^@.*" title="Ник должен начинаться с @">
+                </div>
+                <button type="submit" class="submit-button">Отправить заявку</button>
+                <p id="signup-message" class="message-area"></p>
+            </form>
         </div>
     </div>
 

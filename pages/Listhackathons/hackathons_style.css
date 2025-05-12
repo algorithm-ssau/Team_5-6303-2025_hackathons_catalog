@@ -104,6 +104,56 @@ nav a.active {
     background-color: #3CB371;
 }
 
+/* Стили фильтров */
+#filters {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #eef;
+    border-radius: 5px;
+}
+#filters h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 1.5em;
+}
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+.filter-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.filter-group input[type="text"],
+.filter-group input[type="date"],
+.filter-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 150px;
+    box-sizing: border-box;
+}
+#apply-filters-btn, #reset-filters-btn {
+    background-color: #87CEEB;
+    color: white;
+}
+#apply-filters-btn:hover, #reset-filters-btn:hover {
+    background-color: #5F9EA0;
+}
+#reset-filters-btn {
+    background-color: #aaa;
+}
+#reset-filters-btn:hover {
+    background-color: #888;
+}
 
 /* Стили сетки и карточек хакатонов */
 .hackathon-grid {
@@ -149,6 +199,7 @@ nav a.active {
 .hackathon-card .specializations {
     margin-top: 10px;
     font-size: 0.9em;
+    margin-bottom: 12px;
 }
 
 .hackathon-card .spec-tag {
@@ -162,9 +213,8 @@ nav a.active {
     margin-top: 5px;
 }
 
-
-.hackathon-card button.open-details-btn {
-    background-color: #007bff; 
+.hackathon-card button.open-modal-btn {
+    background-color: #28a745;
     color: white;
     margin-top: auto;
     padding: 8px 12px;
@@ -172,11 +222,11 @@ nav a.active {
     align-self: center;
 }
 
-.hackathon-card button.open-details-btn:hover {
-    background-color: #0056b3;
+.hackathon-card button.open-modal-btn:hover {
+    background-color: #218838;
 }
 
-
+/* Стили для модальных окон */
 .modal {
     display: none;
     position: fixed;
@@ -223,7 +273,70 @@ nav a.active {
     text-decoration: none;
 }
 
+/* Кнопка "Записаться" внутри первого модального окна */
+button.signup-button-modal {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+button.signup-button-modal:hover {
+    background-color: #218838;
+}
 
+/* Стили для формы во втором модальном окне */
+#signup-form .form-group {
+    margin-bottom: 15px;
+}
+
+#signup-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#signup-form input[type="text"],
+#signup-form input[type="email"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#signup-form button.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    width: 100%;
+}
+#signup-form button.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.message-area {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+.message-area.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+.message-area.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
 
 /* Стили подвала */
 footer {
@@ -236,12 +349,25 @@ footer {
     margin-top: 30px;
 }
 
+/* Адаптивность */
 @media (max-width: 768px) {
     .hackathon-grid {
         grid-template-columns: 1fr;
     }
 
-
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-group input[type="text"],
+    .filter-group input[type="date"],
+    .filter-group select {
+        min-width: unset;
+        width: 100%;
+    }
+    .filter-controls button {
+        width: 100%;
+    }
 
     .modal-content {
         width: 90%;
