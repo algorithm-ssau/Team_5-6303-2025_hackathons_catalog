@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HackathonRadar - Главная</title>
-    <link rel="stylesheet" href="main_style.css"> 
+    <link rel="stylesheet" href="main_style.css">
 </head>
 <body>
+    <!-- Шапка -->
     <header>
         <div class="header-container">
             <div class="logo-section">
-                <a href="main.html">HackathonRadar</a> 
+                <a href="main.html">HackathonRadar</a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="../Listhackathons/hackathons.html">Список хакатонов</a></li> 
+                    <li><a href="../Listhackathons/hackathons.html">Список хакатонов</a></li>
                     <li><a href="../Organizers/organizers.html">Организаторы</a></li>
-                    <li><a href="../about/about.html">О проекте</a></li> 
+                    <li><a href="../about/about.html">О проекте</a></li>
                 </ul>
             </nav>
             <div class="actions-section">
@@ -25,30 +26,54 @@
         </div>
     </header>
 
+    <!-- Основное содержимое -->
     <main>
+        <!-- Секция новостей -->
         <section id="news">
             <h2>Новости</h2>
+
+            <!-- Новость 1 -->
             <article class="news-item">
                 <h3>Заголовок новости 1</h3>
-                <p>Краткое описание новости 1. Здесь может быть анонс нового хакатона или важное обновление на сайте...</p>
+                <!-- Слайдер изображений -->
+                <div class="news-slider">
+                    <div class="slider-images">
+                        <img src="images_main/1news1.png" alt="Изображение к новости 1" class="slider-image active">
+                        <img src="images_main/1news2.png" alt="Изображение к новости 1 - другое" class="slider-image">
+                        <img src="images_main/1news3.png" alt="Изображение к новости 1 - еще одно" class="slider-image">
+                    </div>
+                    <button class="slider-control prev">❮</button>
+                    <button class="slider-control next">❯</button>
+                </div>
+                <p>Краткое описание новости 1...</p>
                 <a href="#">Читать далее</a>
             </article>
+
+            <!-- Новость 2 -->
             <article class="news-item">
                 <h3>Заголовок новости 2</h3>
-                <p>Краткое описание новости 2. Еще одна интересная новость для участников и организаторов...</p>
+                 <!-- Слайдер изображений -->
+                 <div class="news-slider">
+                    <div class="slider-images">
+                         <img src="images_main/2news1.png" alt="Изображение к новости 2" class="slider-image active">
+                         <img src="images_main/2news2.png" alt="Изображение к новости 2 - другое" class="slider-image">
+                    </div>
+                    <button class="slider-control prev">❮</button>
+                    <button class="slider-control next">❯</button>
+                 </div>
+                <p>Краткое описание новости 2...</p>
                 <a href="#">Читать далее</a>
             </article>
-            </section>
 
-        <section id="about">
-            <h2>О проекте</h2>
-            <p>Краткое описание вашего сайта-каталога хакатонов. Расскажите о его цели и возможностях. HackathonRadar - это платформа для поиска и публикации информации о предстоящих хакатонах.</p>
-            <p>Мы стремимся собрать все актуальные мероприятия в одном месте, чтобы разработчики, дизайнеры и менеджеры могли легко находить интересные для себя события, а организаторы – привлекать участников.</p>
         </section>
     </main>
 
+    <!-- Подвал -->
     <footer>
-        <p>&copy; 2025 HackathonRadar. Все права защищены.</p>
+        <p>© 2025 HackathonRadar. Все права защищены.</p>
     </footer>
+
+    <!-- Скрипт слайдера -->
+    <script src="slider.js"></script>
 </body>
 </html>
