@@ -29,7 +29,11 @@
     <main>
         <h1>Список хакатонов</h1>
 
-        <!-- Секция фильтров -->
+        <div class="quiz-trigger-section">
+            <button id="open-quiz-btn" class="quiz-button">Помочь выбрать хакатон?</button>
+        </div>
+
+        <!-- Секция фильтров  -->
         <section id="filters">
             <h2>Фильтры</h2>
             <div class="filter-controls">
@@ -69,6 +73,26 @@
                         <option value="RosAtom">RosAtom</option>
                     </select>
                 </div>
+                <!-- НОВЫЕ ФИЛЬТРЫ -->
+                <div class="filter-group">
+                    <label for="filter-level">Уровень:</label>
+                    <select id="filter-level">
+                        <option value="all">Любой</option>
+                        <option value="Начальный">Начальный</option>
+                        <option value="Средний">Средний</option>
+                        <option value="Профессиональный">Профессиональный</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-location">Место проведения:</label>
+                    <select id="filter-location">
+                        <option value="all">Любое</option>
+                        <option value="Онлайн">Онлайн</option>
+                        <option value="Очно, г. Самара">Очно, г. Самара</option>
+                        <option value="Очно, г. Москва">Очно, г. Москва</option>
+                        <option value="Очно, г. Санкт-Петербург">Очно, г. Санкт-Петербург</option>
+                    </select>
+                </div>
                 <button id="apply-filters-btn">Применить фильтры</button>
                 <button id="reset-filters-btn">Сбросить фильтры</button>
             </div>
@@ -78,19 +102,17 @@
             <h2>Актуальные хакатоны</h2>
             <div class="hackathon-grid" id="active-hackathons-grid"></div>
         </section>
-
         <section id="hackathon-list-past">
             <h2>Прошедшие хакатоны</h2>
             <div class="hackathon-grid" id="past-hackathons-grid"></div>
         </section>
     </main>
 
-    <!-- Подвал-->
     <footer>
         <p>© 2025 HackathonRadar. Все права защищены.</p>
     </footer>
 
-    <!-- Модальные окна -->
+    <!-- Модальное окно №1: Детали хакатона  -->
     <div id="details-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="close-details-modal">×</span>
@@ -99,6 +121,8 @@
                 <h3 id="modal-title"></h3>
                 <p><strong>Организатор:</strong> <span id="modal-organizer"></span></p>
                 <p><strong>Дата:</strong> <span id="modal-date"></span></p>
+                <p><strong>Уровень:</strong> <span id="modal-level"></span></p> 
+                <p><strong>Место проведения:</strong> <span id="modal-location"></span></p> 
                 <div id="modal-specs"><strong>Спецификации:</strong> </div>
                 <p id="modal-description"></p>
                 <button id="open-signup-form-btn" class="signup-button-modal">Записаться</button>
@@ -106,31 +130,37 @@
         </div>
     </div>
 
+    <!-- Модальное окно №2: Форма записи -->
     <div id="signup-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="close-signup-modal">×</span>
             <h2>Запись на хакатон: <span id="signup-hackathon-title"></span></h2>
             <form id="signup-form">
-                <div class="form-group">
-                    <label for="signup-name">Ваше ФИО:</label>
-                    <input type="text" id="signup-name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email">Ваш Email:</label>
-                    <input type="email" id="signup-email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-telegram">Ваш ник в Telegram (@ник):</label>
-                    <input type="text" id="signup-telegram" name="telegram" required pattern="^@.*" title="Ник должен начинаться с @">
-                </div>
+                <div class="form-group"><label for="signup-name">Ваше ФИО:</label><input type="text" id="signup-name" name="name" required></div>
+                <div class="form-group"><label for="signup-email">Ваш Email:</label><input type="email" id="signup-email" name="email" required></div>
+                <div class="form-group"><label for="signup-telegram">Ваш ник в Telegram (@ник):</label><input type="text" id="signup-telegram" name="telegram" required pattern="^@.*" title="Ник должен начинаться с @"></div>
                 <button type="submit" class="submit-button">Отправить заявку</button>
                 <p id="signup-message" class="message-area"></p>
             </form>
         </div>
     </div>
 
+    <!-- Модальное окно №3: Анкета -->
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content quiz-modal-content">
+            <span class="close-btn" id="close-quiz-modal">×</span>
+            <h2>Помощник выбора хакатона</h2>
+            <form id="quiz-form">
+                <div id="quiz-questions-container">
+                </div>
+                <button type="submit" class="quiz-submit-button">Подобрать хакатоны</button>
+            </form>
+            <div id="quiz-recommendation" style="margin-top: 15px; font-weight: bold;"></div>
+        </div>
+    </div>
+
     <!-- Шаблон карточки хакатона для JS -->
-    <template id="hackathon-card-template">
+     <template id="hackathon-card-template">
         <article class="hackathon-card"
                  data-title=""
                  data-organizer=""
@@ -140,12 +170,15 @@
                  data-specs=''
                  data-img-src=""
                  data-full-description=""
-                 data-short-description="">
+                 data-short-description=""
+                 data-level="" 
+                 data-location="">
             <img src="" alt="">
             <h3></h3>
             <p><strong>Организатор:</strong> <span class="organizer"></span></p>
             <p><strong>Дата:</strong> <span class="date-display"></span></p>
-            <!-- ЭЛЕМЕНТ ДЛЯ КРАТКОГО ОПИСАНИЯ -->
+            <p><strong>Уровень:</strong> <span class="level"></span></p> 
+            <p><strong>Место:</strong> <span class="location"></span></p> 
             <p class="short-description"></p> 
             <div class="specializations">
                 <strong>Спецификации:</strong>
