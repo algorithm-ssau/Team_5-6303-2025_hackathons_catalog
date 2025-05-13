@@ -85,34 +85,32 @@
       </div>
     </section>
 
-
     <!-- Почему эти компании заслуживают внимание -->
-<section class="mt-24">
-  <h2 class="text-3xl font-bold text-center mb-12">Почему эти компании заслуживают внимание?</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="bg-white rounded-2xl shadow-lg p-6 text-center transition transform hover:shadow-2xl hover:-translate-y-1 animate-fade-in delay-100">
-      <div class="text-4xl mb-4 transition-transform duration-300 hover:scale-110">💳</div>
-      <h3 class="font-semibold text-lg mb-2">Удобство использования</h3>
-      <p class="text-gray-600">Современные приложения, понятный интерфейс, всё под рукой.</p>
-    </div>
-    <div class="bg-white rounded-2xl shadow-lg p-6 text-center transition transform hover:shadow-2xl hover:-translate-y-1 animate-fade-in delay-200">
-      <div class="text-4xl mb-4 transition-transform duration-300 hover:scale-110">📈</div>
-      <h3 class="font-semibold text-lg mb-2">Надёжность</h3>
-      <p class="text-gray-600">Многолетний опыт, миллионы клиентов, безотказная работа.</p>
-    </div>
-    <div class="bg-white rounded-2xl shadow-lg p-6 text-center transition transform hover:shadow-2xl hover:-translate-y-1 animate-fade-in delay-300">
-      <div class="text-4xl mb-4 transition-transform duration-300 hover:scale-110">💡</div>
-      <h3 class="font-semibold text-lg mb-2">Инновации</h3>
-      <p class="text-gray-600">Постоянное внедрение новых функций и улучшений.</p>
-    </div>
-    <div class="bg-white rounded-2xl shadow-lg p-6 text-center transition transform hover:shadow-2xl hover:-translate-y-1 animate-fade-in delay-400">
-      <div class="text-4xl mb-4 transition-transform duration-300 hover:scale-110">🌐</div>
-      <h3 class="font-semibold text-lg mb-2">Доступность</h3>
-      <p class="text-gray-600">Работают по всей России, всегда на связи и в шаговой доступности.</p>
-    </div>
-  </div>
-</section>
-
+    <section class="reasons-section">
+      <h2>Почему эти компании заслуживают внимания?</h2>
+      <div class="reasons-grid">
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon">💳</div>
+          <h3>Удобство</h3>
+          <p>Интуитивные сервисы, доступ к хакатонам из любого региона.</p>
+        </div>
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon">📈</div>
+          <h3>Надёжность</h3>
+          <p>Стабильные партнёры с многолетним опытом в ИТ и бизнесе.</p>
+        </div>
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon">💡</div>
+          <h3>Инновации</h3>
+          <p>Продвигают технологии, развивают искусственный интеллект, big data, DevOps и другие направления.</p>
+        </div>
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon">🌐</div>
+          <h3>Масштаб</h3>
+          <p>Федеральные и международные инициативы, широкое сообщество участников.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="other-partners-section">
       <h2>Другие партнёры</h2>
@@ -146,19 +144,16 @@
     <p>&copy; 2025 HackathonRadar. Все права защищены.</p>
   </footer>
 
-  <!-- Подключение AOS и скрипта разворачивания карточек -->
+  <!-- AOS + интерактив -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init();
 
     document.querySelectorAll('.expandable').forEach(card => {
       card.addEventListener('click', () => {
-        // Сворачиваем все карточки
         document.querySelectorAll('.expandable').forEach(c => {
           if (c !== card) c.classList.remove('expanded');
         });
-
-        // Переключаем выбранную карточку
         card.classList.toggle('expanded');
       });
     });
