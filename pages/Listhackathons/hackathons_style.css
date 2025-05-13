@@ -107,6 +107,27 @@ nav a.active {
     background-color: #3CB371;
 }
 
+/* Стили для кнопки вызова анкеты */
+.quiz-trigger-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.quiz-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quiz-button:hover {
+    background-color: #0056b3;
+}
+
 /* Стили фильтров */
 #filters {
     margin-bottom: 30px;
@@ -123,12 +144,14 @@ nav a.active {
 .filter-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px; 
     align-items: flex-end;
 }
 .filter-group {
     display: flex;
     flex-direction: column;
+    flex-basis: calc(33.333% - 10px); 
+    min-width: 140px;
 }
 .filter-group label {
     margin-bottom: 5px;
@@ -141,12 +164,14 @@ nav a.active {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    min-width: 150px;
+    width: 100%;
     box-sizing: border-box;
 }
 #apply-filters-btn, #reset-filters-btn {
     background-color: #87CEEB;
     color: white;
+    flex-basis: calc(50% - 5px);
+    margin-top: 10px;
 }
 #apply-filters-btn:hover, #reset-filters-btn:hover {
     background-color: #5F9EA0;
@@ -193,22 +218,26 @@ nav a.active {
 
 .hackathon-card h3 {
     margin-top: 0;
-    margin-bottom: 8px; 
+    margin-bottom: 6px; 
     color: #0056b3;
+    font-size: 1.1em; 
 }
 
-.hackathon-card p {
-    margin: 4px 0; 
-    font-size: 0.9em;
+.hackathon-card p { 
+    margin: 3px 0; 
+    font-size: 0.85em; 
+    line-height: 1.3;
 }
+.hackathon-card p strong {
+    color: #333;
+}
+
 
 .hackathon-card .short-description {
-    font-size: 0.85em;
     color: #555;
-    margin-top: 8px;
-    margin-bottom: 10px;
+    margin-top: 6px;
+    margin-bottom: 8px;
     line-height: 1.4;
-    /* Ограничение по количеству строк */
     display: -webkit-box;
     -webkit-line-clamp: 3; 
     line-clamp: 3;         
@@ -219,9 +248,9 @@ nav a.active {
 }
 
 .hackathon-card .specializations {
-    margin-top: 10px; 
-    font-size: 0.9em;
-    margin-bottom: 12px;
+    margin-top: 8px; 
+    font-size: 0.9em; 
+    margin-bottom: 10px; 
 }
 
 .hackathon-card .spec-tag {
@@ -285,17 +314,17 @@ nav a.active {
 }
 .modal-content {
     background-color: #fefefe;
-    margin: 8% auto; 
+    margin: 5% auto; 
     padding: 25px;
     border: 1px solid #888;
     border-radius: 8px;
     width: 80%;
-    max-width: 650px; 
+    max-width: 700px; 
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 .modal-body {
-     max-height: 65vh; 
+     max-height: 70vh; 
      overflow-y: auto; 
      padding-right: 15px; 
 }
@@ -303,6 +332,16 @@ nav a.active {
     background-color: #ffffff; 
     object-fit: contain; 
 }
+/* Стили для полей в модальном окне деталей */
+#details-modal .modal-body p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+#details-modal .modal-body p strong {
+    color: #111;
+}
+
+
 .close-btn {
     color: #aaa;
     position: absolute;
@@ -379,6 +418,59 @@ button.signup-button-modal:hover {
     display: block;
 }
 
+/* Стили для модального окна анкеты */
+.quiz-modal-content { 
+    max-width: 750px; 
+}
+
+#quiz-questions-container .quiz-question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#quiz-questions-container .quiz-question p.question-title { 
+    font-weight: bold;
+    font-size: 1.05em;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+#quiz-questions-container .quiz-options label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+#quiz-questions-container .quiz-options label:hover {
+    background-color: #e9ecef;
+}
+#quiz-questions-container .quiz-options input[type="radio"] {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.quiz-submit-button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.quiz-submit-button:hover {
+    background-color: #218838;
+}
+
+
 /* Стили подвала */
 footer {
     background-color: #333;
@@ -399,18 +491,24 @@ footer {
         flex-direction: column;
         align-items: stretch;
     }
+    .filter-group {
+        flex-basis: auto;
+    }
     .filter-group input[type="text"],
     .filter-group input[type="date"],
     .filter-group select {
         min-width: unset;
         width: 100%;
     }
+    #apply-filters-btn, #reset-filters-btn {
+        flex-basis: auto;
+    }
     .filter-controls button {
         width: 100%;
     }
     .modal-content {
         width: 90%;
-        margin: 15% auto;
+        margin: 10% auto;
         padding: 15px;
     }
      nav ul {
