@@ -88,13 +88,22 @@ main {
     text-align: center;
 }
 .news-item {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
 }
 .news-item:last-child {
     border-bottom: none;
+    padding-bottom: 0;
     margin-bottom: 0;
+}
+.news-item:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: #90EE90; /* Изменен цвет на зеленый */
+    margin-bottom: 20px;
 }
 .news-item h3 {
     margin-top: 0;
