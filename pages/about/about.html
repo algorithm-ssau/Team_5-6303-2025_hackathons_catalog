@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HackathonRadar - О проекте</title>
     <link rel="stylesheet" href="about_style.css">
+    <style>
+        /* Стили для размещения подвала в самом низу страницы */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        main {
+            flex-grow: 1;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <!-- Шапка -->
@@ -28,16 +45,13 @@
 
         <div class="project-description">
             <!-- Здесь опишите проект -->
+             <p>Здесь совсем скоро появится описание нашего проекта!</p>
         </div>
 
         <div class="team-list">
             <!-- Здесь перечислите команды или участников -->
         </div>
     </main>
-
-    <footer>
-        <p>© 2025 HackathonRadar. Все права защищены.</p>
-    </footer>
 
     <!-- Модальное окно №1: Дополнительные детали -->
     <div id="details-modal" class="modal">
@@ -49,6 +63,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Подвал -->
+    <footer>
+        <p>© 2025 HackathonRadar. Все права защищены.</p>
+    </footer>
 
     <script src="about_scripts.js"></script>
 </body>
