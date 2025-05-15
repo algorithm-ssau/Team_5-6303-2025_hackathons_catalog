@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}HackathonRadar - Главная{% endblock %}
+
+{% block head_styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_style.css') }}">
+    <style>
+        /* Эти стили можно перенести в main_style.css */
+        .news-description p { margin-bottom: 1em; }
+        .news-description p:last-child { margin-bottom: 0; }
+        .news-topics { list-style: disc; margin-left: 20px; margin-top: 0.5em; margin-bottom: 1em; }
+    </style>
+{% endblock %}
+
+{% block content %}
+<section id="news">
+    <h2>Новости</h2>
+    <article class="news-item">
+        <h3>Лидеры первого Всероссийского студенческого Неймарк Хакатона «Умный Кампус»</h3>
+        <div class="news-slider">
+            <div class="slider-images">
+                <img src="{{ url_for('static', filename='images/images_main/3news1.png') }}" alt="Неймарк Хакатон" class="slider-image active">
+                <img src="{{ url_for('static', filename='images/images_main/3news2.png') }}" alt="Команда Самарского Университета" class="slider-image">
+                <img src="{{ url_for('static', filename='images/images_main/3news3.png') }}" alt="Процесс Неймарк Хакатона" class="slider-image">
+            </div>
+            <button class="slider-control prev">❮</button>
+            <button class="slider-control next">❯</button>
+        </div>
+        <div class="news-description">
+            <p><strong>Неймарк Хакатон</strong> прошел в Нижнем Новгороде с 30 по 31 мая...</p>
+            <p>Задачи по разработке цифровых продуктов направлены на создание сервисов...</p>
+            <p>Всего в турнире было заявлено 9 треков: образование, наука и технологии...</p>
+            <ul class="news-topics">
+                <li>1 место и денежный приз 250 тыс. рублей получила команда «Первых» из Томска</li>
+                <li>2 место и денежный приз 150 тыс. рублей получила команда «Divar» из Уфы</li>
+                <li>3 место и денежный приз 100 тыс. рублей получила команда «Plan A» из Самары</li>
+            </ul>
+            <p>Участники отметили, что участие давалось нелегко...</p>
+        </div>
+        <a href="#" class="read-more-btn">Читать далее</a>
+    </article>
+
+    <article class="news-item">
+        <h3>Первый Всероссийский Хакатон "AgroTech: Инновации в АПК"</h3>
+        <div class="news-slider">
+            <div class="slider-images">
+                <img src="{{ url_for('static', filename='images/images_main/1news1.png') }}" alt="Хакатон AgroTech" class="slider-image active">
+                <img src="{{ url_for('static', filename='images/images_main/1news2.png') }}" alt="Цифровизация АПК" class="slider-image">
+                <img src="{{ url_for('static', filename='images/images_main/1news3.png') }}" alt="Участники AgroTech" class="slider-image">
+            </div>
+            <button class="slider-control prev">❮</button>
+            <button class="slider-control next">❯</button>
+        </div>
+        <div class="news-description">
+            <p>Рады сообщить о появлении в нашем каталоге нового интересного события! ...</p>
+            <p>Мероприятие пройдет в <strong>онлайн-формате с 22 по 24 ноября 2024 года</strong>...</p>
+            <p>Участникам, среди которых ожидается более 500 команд...</p>
+            <ul class="news-topics">
+                <li>Цифровизация управления фермерскими хозяйствами</li>
+                <li>Применение AI и машинного зрения для мониторинга посевов и скота</li>
+                <li>Разработка логистических решений для цепочек поставок продукции</li>
+                <li>Экологический мониторинг и устойчивое земледелие с использованием IT</li>
+            </ul>
+            <p>Общий призовой фонд хакатона составит <strong>750 000 рублей</strong>...</p>
+            <p>Это уникальный шанс применить свои навыки...</p>
+            <p><em>Не упустите возможность внести свой вклад в цифровизацию российского АПК!</em></p>
+        </div>
+        <a href="#" class="read-more-btn">Читать далее</a>
+    </article>
+
+    <article class="news-item">
+        <h3>Итоги Хакатона "Город будущего"</h3>
+         <div class="news-slider">
+            <div class="slider-images">
+                 <img src="{{ url_for('static', filename='images/images_main/2news1.png') }}" alt="Хакатон Город будущего" class="slider-image active">
+                 <img src="{{ url_for('static', filename='images/images_main/2news2.png') }}" alt="Инновационный центр Сколково" class="slider-image">
+            </div>
+            <button class="slider-control prev">❮</button>
+            <button class="slider-control next">❯</button>
+         </div>
+        <div class="news-description">
+            <p>Спешим поделиться итогами масштабного <strong>Хакатона "Город будущего"</strong>...</p>
+            <p>В течение <strong>48 часов</strong> команды разрабатывали решения...</p>
+            <p>Жюри, состоящее из представителей городской администрации...</p>
+            <p>По итогам хакатона были определены победители...</p>
+            <p>Мы поздравляем победителей и всех участников...</p>
+            <p><em>Следите за обновлениями на нашем сайте...</em></p>
+        </div>
+        <a href="#" class="read-more-btn">Читать далее</a>
+    </article>
+</section>
+{% endblock %}
+
+{% block body_scripts %}
+    <script src="{{ url_for('static', filename='js/main_scripts.js') }}"></script>
+{% endblock %}

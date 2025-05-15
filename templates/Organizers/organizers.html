@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block title %}HackathonRadar - Организаторы{% endblock %}
+
+{% block head_styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/organizers_style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="organizers-section">
+  <h2>Наши главные организаторы</h2>
+  <div class="organizers-grid">
+    <div class="organizer-card expandable" data-tooltip="Финансовый гигант. Частый организатор AI хакатонов." data-aos="fade-up">
+      <img src="{{ url_for('static', filename='images/images_organizers/vtb.png') }}" alt="ВТБ">
+      <p><strong>ВТБ</strong> — один из крупнейших банков России...</p>
+      <div class="more-info">
+        <p><strong>Контакты:</strong> partners@vtb.ru</p>
+        <p><strong>Сайт:</strong> <a href="https://vtb.ru" target="_blank">vtb.ru</a></p>
+      </div>
+    </div>
+    {# ... остальные карточки организаторов с обновленными путями к изображениям ... #}
+    <div class="organizer-card expandable" data-tooltip="Активно развивает направление финтех-стартапов." data-aos="fade-up" data-aos-delay="100">
+      <img src="{{ url_for('static', filename='images/images_organizers/tinkoff.png') }}" alt="Тинькофф">
+      <p><strong>Тинькофф</strong> — технологичная финтех-компания...</p>
+      <div class="more-info">
+        <p><strong>Контакты:</strong> hack@tinkoff.ru</p>
+        <p><strong>Сайт:</strong> <a href="https://tinkoff.ru" target="_blank">tinkoff.ru</a></p>
+      </div>
+    </div>
+    <div class="organizer-card expandable" data-tooltip="Проводит десятки хакатонов ежегодно." data-aos="fade-up" data-aos-delay="200">
+      <img src="{{ url_for('static', filename='images/images_organizers/yandex.png') }}" alt="Яндекс">
+      <p><strong>Яндекс</strong> — лидер в сфере интернет-сервисов...</p>
+      <div class="more-info">
+        <p><strong>Контакты:</strong> hack@yandex-team.ru</p>
+        <p><strong>Сайт:</strong> <a href="https://yandex.ru" target="_blank">yandex.ru</a></p>
+      </div>
+    </div>
+     <div class="organizer-card expandable" data-tooltip="Проводит AI и BigData хакатоны." data-aos="fade-up" data-aos-delay="300">
+      <img src="{{ url_for('static', filename='images/images_organizers/sber.png') }}" alt="Сбербанк">
+      <p><strong>Сбер</strong> — мощный технологический партнёр...</p>
+      <div class="more-info">
+        <p><strong>Контакты:</strong> hack@sber.ru</p>
+        <p><strong>Сайт:</strong> <a href="https://sber.ru" target="_blank">sber.ru</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="organizers-grid last-row-centered">
+    <div class="organizer-card expandable" data-tooltip="Спонсирует телеком-направление." data-aos="fade-up" data-aos-delay="400">
+      <img src="{{ url_for('static', filename='images/images_organizers/megafon.png') }}" alt="МегаФон">
+      <p><strong>МегаФон</strong> — телеком-гигант...</p>
+      <div class="more-info">
+        <p><strong>Контакты:</strong> hack@megafon.ru</p>
+        <p><strong>Сайт:</strong> <a href="https://megafon.ru" target="_blank">megafon.ru</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reasons-section">
+  <h2>Почему эти компании заслуживают внимания?</h2>
+  <div class="reasons-grid">
+    {# ... карточки причин ... #}
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon">💳</div>
+          <h3>Удобство</h3>
+          <p>Интуитивные сервисы, доступ к хакатонам из любого региона.</p>
+        </div>
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon">📈</div>
+          <h3>Надёжность</h3>
+          <p>Стабильные партнёры с многолетним опытом в ИТ и бизнесе.</p>
+        </div>
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon">💡</div>
+          <h3>Инновации</h3>
+          <p>Продвигают технологии, развивают искусственный интеллект, big data, DevOps и другие направления.</p>
+        </div>
+        <div class="reason-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon">🌐</div>
+          <h3>Масштаб</h3>
+          <p>Федеральные и международные инициативы, широкое сообщество участников.</p>
+        </div>
+  </div>
+</section>
+
+<section class="other-partners-section">
+<h2>Другие партнёры</h2>
+<div class="other-partners-list">
+    {# ... карточки других партнеров с обновленными путями к изображениям ... #}
+    <div class="partner-card" data-aos="fade-up">
+    <img src="{{ url_for('static', filename='images/images_organizers/mailru.png') }}" alt="Mail.ru">
+    <div class="partner-info"> <span class="partner-name">Mail.ru</span> <span class="partner-count">97 хакатонов</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="100">
+    <img src="{{ url_for('static', filename='images/images_organizers/rosatom.png') }}" alt="Росатом">
+    <div class="partner-info"> <span class="partner-name">Росатом</span> <span class="partner-count">92 хакатона</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="200">
+    <img src="{{ url_for('static', filename='images/images_organizers/mts.png') }}" alt="МТС">
+    <div class="partner-info"> <span class="partner-name">МТС</span> <span class="partner-count">88 хакатонов</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="300">
+    <img src="{{ url_for('static', filename='images/images_organizers/ozon.png') }}" alt="OZON">
+    <div class="partner-info"> <span class="partner-name">OZON</span> <span class="partner-count">54 хакатона</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="400">
+    <img src="{{ url_for('static', filename='images/images_organizers/sk.png') }}" alt="Сколково">
+    <div class="partner-info"> <span class="partner-name">Сколково</span> <span class="partner-count">41 хакатон</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="500">
+    <img src="{{ url_for('static', filename='images/images_organizers/jb.png') }}" alt="JetBrains">
+    <div class="partner-info"> <span class="partner-name">JetBrains</span> <span class="partner-count">37 хакатонов</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="600">
+    <img src="{{ url_for('static', filename='images/images_organizers/kaspersky.png') }}" alt="Kaspersky">
+    <div class="partner-info"> <span class="partner-name">Kaspersky</span> <span class="partner-count">29 хакатонов</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="700">
+    <img src="{{ url_for('static', filename='images/images_organizers/epam.png') }}" alt="EPAM">
+    <div class="partner-info"> <span class="partner-name">EPAM</span> <span class="partner-count">26 хакатонов</span> </div>
+    </div>
+    <div class="partner-card" data-aos="fade-up" data-aos-delay="800">
+    <img src="{{ url_for('static', filename='images/images_organizers/avito.png') }}" alt="Avito">
+    <div class="partner-info"> <span class="partner-name">Avito</span> <span class="partner-count">24 хакатона</span> </div>
+    </div>
+</div>
+</section>
+{% endblock %}
+
+{% block body_scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        document.querySelectorAll('.expandable').forEach(card => {
+        card.addEventListener('click', () => {
+            document.querySelectorAll('.expandable').forEach(c => {
+            if (c !== card) c.classList.remove('expanded');
+            });
+            card.classList.toggle('expanded');
+        });
+        });
+    </script>
+{% endblock %}
