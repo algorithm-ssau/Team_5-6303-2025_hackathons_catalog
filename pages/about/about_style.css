@@ -1,4 +1,3 @@
-/* Общие стили */
 body {
     font-family: sans-serif;
     margin: 0;
@@ -6,6 +5,9 @@ body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
@@ -15,6 +17,7 @@ main {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-grow: 1;
 }
 
 h1, h2 {
@@ -29,7 +32,6 @@ h2 {
      margin-top: 30px;
 }
 
-/* Стили шапки */
 header {
     background-color: white;
     padding: 1em 20px;
@@ -77,36 +79,47 @@ nav a.active {
     background-color: #87CEEB;
     font-weight: bold;
 }
+.actions-section a.add-hackathon-button {
+    background-color: #90EE90;
+    color: white;
+    padding: 0.8em 1.5em;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.actions-section a.add-hackathon-button:hover {
+    background-color: #3CB371;
+}
 
-
-/* Основное содержимое страницы "О проекте" */
-/*main {*/
-    /* Здесь вы можете добавить описание проекта */
-/*}*/
-
-/* Стили для секции с описанием проекта */
-/*.project-description {
+.project-description {
     margin-bottom: 30px;
-}*/
+    padding: 0 15px;
+}
 
-/* Стили для списка команд или участников */
-/*
+.project-description p {
+    margin-bottom: 1em;
+}
+
+.project-description h3 {
+    text-align: center;
+    margin-top: 2em;
+    font-style: italic;
+    color: #555;
+}
+
 .team-list {
     margin-top: 20px;
-}*/
+}
 
-/* Стили для подвала */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 1.5em 0;
-    position: static;
     width: 100%;
-    margin-top: 30px;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;

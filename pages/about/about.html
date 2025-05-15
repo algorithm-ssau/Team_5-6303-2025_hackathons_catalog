@@ -5,26 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HackathonRadar - О проекте</title>
     <link rel="stylesheet" href="about_style.css">
-    <style>
-        /* Стили для размещения подвала в самом низу страницы */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
-        main {
-            flex-grow: 1;
-        }
-        footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
-    <!-- Шапка -->
     <header>
         <div class="header-container">
             <div class="logo-section">
@@ -37,6 +19,9 @@
                     <li><a href="about.html" class="active">О проекте</a></li>
                 </ul>
             </nav>
+            <div class="actions-section">
+                <a href="https://t.me/nikoladochka" target="_blank" class="add-hackathon-button">Добавить Хакатон</a>
+            </div>
         </div>
     </header>
 
@@ -44,7 +29,6 @@
         <h1>О проекте HackathonRadar</h1>
 
         <div class="project-description">
-            <!-- Здесь опишите проект -->
             <p> Добро пожаловать на HackathonRadar — уникальную платформу, созданную для того, чтобы собрать все российские хакатоны в одном месте. Мы понимаем, как сложно следить за растущим числом мероприятий в сфере технологий. И наш проект призван упростить поиск и участие в этих увлекательных событиях.</p>
             <p>HackathonRadar ориентирован на представителей IT-отрасли, включая веб-разработчиков, мобильных разработчиков, специалистов в области data science, GameDev и многих других. Мы стремимся создать сообщество для всех, кто заинтересован в инновациях и решении актуальных задач.</p>
             <p>HackathonRadar был создан группой студентов IT-направления, которые столкнулись с трудностями в поиске актуальной информации о хакатонах. Мы поняли, как важно иметь надежный источник информации, и решили создать платформу, которая решит эту проблему для всех.</p>
@@ -52,15 +36,11 @@
         </div>
 
         <div class="team-list">
-            <!-- Здесь перечислите команды или участников -->
         </div>
     </main>
 
-    <!-- Подвал -->
     <footer>
         <p>© 2025 HackathonRadar. Все права защищены.</p>
     </footer>
-
-    <script src="about_scripts.js"></script>
 </body>
 </html>
