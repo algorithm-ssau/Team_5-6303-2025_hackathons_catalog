@@ -112,22 +112,140 @@ nav a.active {
     margin-top: 20px;
 }
 
+/* Стили для подвала сайта */
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1.5em 0;
+    background-color: #2c2c2c;
+    color: #b0b0b0;
+    padding: 30px 20px 10px 20px;
+    font-size: 0.9em;
+    line-height: 1.6;
     width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; 
 }
 
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto 5px auto; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer-column { 
+    flex: 1;
+}
+
+.footer-column.footer-logo-contact {
+    flex-grow: 0; 
+    flex-shrink: 0;
+    margin-right: 20px; 
+}
+
+.footer-logo-contact .footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-logo-img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.footer-logo-contact .footer-logo span {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.footer-contact-info p {
+    margin: 4px 0;
+    font-size: 0.9em;
+}
+
+.footer-contact-info a {
+    color: #66aaff;
+    text-decoration: none;
+}
+.footer-contact-info a:hover {
+    text-decoration: underline;
+}
+
+.footer-column.footer-main-links {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    gap: 25px; 
+    flex-wrap: wrap; 
+    margin-left: auto; 
+}
+
+.footer-main-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.2s ease;
+    padding: 5px 0; 
+    white-space: nowrap; 
+}
+
+.footer-main-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 5px;      
+    border-top: none;       
+    font-size: 0.85em;
+    color: #888;
+}
+
+/* Адаптивность для подвала */
+@media (max-width: 992px) { 
+    .footer-column.footer-main-links {
+        flex-direction: column; 
+        align-items: flex-start;
+        margin-left: 0; 
+        margin-top: 20px; 
+        width:100%; 
     }
-    .header-container {
+     .footer-container {
+        justify-content: flex-start; 
+    }
+    .footer-column.footer-logo-contact {
+        margin-right: 0;
+        width: 100%; 
+        text-align: center; 
+    }
+     .footer-logo-contact .footer-logo {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 767px) { 
+    .footer-container {
         flex-direction: column;
-        gap: 10px;
+        align-items: center; 
+        text-align: center; 
+    }
+    .footer-column.footer-logo-contact {
+        margin-bottom: 20px;
+    }
+    .footer-column.footer-main-links {
+        align-items: center;
+        margin-top: 10px; 
+    }
+    .footer-main-links a {
+        font-size: 0.9em; 
+    }
+    .footer-bottom {
+        padding-top: 10px; 
     }
 }
