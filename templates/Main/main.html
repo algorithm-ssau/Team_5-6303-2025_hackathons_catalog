@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackathonRadar - Главная</title>
+    <link rel="stylesheet" href="main_style.css">
+    <style>
+        .news-description p { margin-bottom: 1em; }
+        .news-description p:last-child { margin-bottom: 0; }
+        .news-topics { list-style: disc; margin-left: 20px; margin-top: 0.5em; margin-bottom: 1em; }
+    </style>
+    <!-- ВАЖНО: Вернули data-атрибуты в этот скрипт -->
+    <!-- ЗАМЕНИ YOUR_BOT_USERNAME на username твоего бота -->
+    <script async src="https://telegram.org/js/telegram-widget.js?22" 
+            data-telegram-login="HackathonRadarLoginBot" 
+            data-size="medium" 
+            data-onauth="onTelegramAuth(user)" 
+            data-request-access="write"
+            data-userpic="false"> {/* Добавил data-userpic="false" чтобы не показывать фото по умолчанию */}
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <a href="main.html">HackathonRadar</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../Listhackathons/hackathons.html">Список хакатонов</a></li>
+                    <li><a href="../Organizers/organizers.html">Организаторы</a></li>
+                    <li><a href="../about/about.html">О проекте</a></li>
+                    <li id="my-hackathons-link" style="display: none;"><a href="#">Мои хакатоны</a></li>
+                </ul>
+            </nav>
+            <div class="actions-section">
+                <!-- В этот контейнер Telegram Widget должен сам вставить кнопку -->
+                <div id="user-info-container"></div>
+                <a href="https://t.me/nikoladochka" target="_blank" class="add-hackathon-button">Добавить Хакатон</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="news">
+            <h2>Новости</h2>
+            <article class="news-item">
+                <h3>Лидеры первого Всероссийского студенческого Неймарк Хакатона «Умный Кампус»</h3>
+                <div class="news-slider">
+                    <div class="slider-images">
+                        <img src="images_main/3news1.png" alt="Неймарк Хакатон" class="slider-image active">
+                        <img src="images_main/3news2.png" alt="Команда Самарского Университета" class="slider-image">
+                        <img src="images_main/3news3.png" alt="Процесс Неймарк Хакатона" class="slider-image">
+                    </div>
+                    <button class="slider-control prev">❮</button>
+                    <button class="slider-control next">❯</button>
+                </div>
+                <div class="news-description">
+                    <p><strong>Неймарк Хакатон</strong> прошел в Нижнем Новгороде с 30 по 31 мая...</p>
+                    <p>Задачи по разработке цифровых продуктов направлены на создание сервисов...</p>
+                    <p>Всего в турнире было заявлено 9 треков: образование, наука и технологии...</p>
+                    <ul class="news-topics">
+                        <li>1 место и денежный приз 250 тыс. рублей получила команда «Первых» из Томска</li>
+                        <li>2 место и денежный приз 150 тыс. рублей получила команда «Divar» из Уфы</li>
+                        <li>3 место и денежный приз 100 тыс. рублей получила команда «Plan A» из Самары</li>
+                    </ul>
+                    <p>Участники отметили, что участие давалось нелегко...</p>
+                </div>
+                <a href="#" class="read-more-btn">Читать далее</a>
+            </article>
+
+            <article class="news-item">
+                <h3>Первый Всероссийский Хакатон "AgroTech: Инновации в АПК"</h3>
+                <div class="news-slider">
+                    <div class="slider-images">
+                        <img src="images_main/1news1.png" alt="Хакатон AgroTech" class="slider-image active">
+                        <img src="images_main/1news2.png" alt="Цифровизация АПК" class="slider-image">
+                        <img src="images_main/1news3.png" alt="Участники AgroTech" class="slider-image">
+                    </div>
+                    <button class="slider-control prev">❮</button>
+                    <button class="slider-control next">❯</button>
+                </div>
+                <div class="news-description">
+                    <p>Рады сообщить о появлении в нашем каталоге нового интересного события! ...</p>
+                    <p>Мероприятие пройдет в <strong>онлайн-формате с 22 по 24 ноября 2024 года</strong>...</p>
+                    <p>Участникам, среди которых ожидается более 500 команд...</p>
+                    <ul class="news-topics">
+                        <li>Цифровизация управления фермерскими хозяйствами</li>
+                        <li>Применение AI и машинного зрения для мониторинга посевов и скота</li>
+                        <li>Разработка логистических решений для цепочек поставок продукции</li>
+                        <li>Экологический мониторинг и устойчивое земледелие с использованием IT</li>
+                    </ul>
+                    <p>Общий призовой фонд хакатона составит <strong>750 000 рублей</strong>...</p>
+                    <p>Это уникальный шанс применить свои навыки...</p>
+                    <p><em>Не упустите возможность внести свой вклад в цифровизацию российского АПК!</em></p>
+                </div>
+                <a href="#" class="read-more-btn">Читать далее</a>
+            </article>
+
+            <article class="news-item">
+                <h3>Итоги Хакатона "Город будущего"</h3>
+                 <div class="news-slider">
+                    <div class="slider-images">
+                         <img src="images_main/2news1.png" alt="Хакатон Город будущего" class="slider-image active">
+                         <img src="images_main/2news2.png" alt="Инновационный центр Сколково" class="slider-image">
+                    </div>
+                    <button class="slider-control prev">❮</button>
+                    <button class="slider-control next">❯</button>
+                 </div>
+                <div class="news-description">
+                    <p>Спешим поделиться итогами масштабного <strong>Хакатона "Город будущего"</strong>...</p>
+                    <p>В течение <strong>48 часов</strong> команды разрабатывали решения...</p>
+                    <p>Жюри, состоящее из представителей городской администрации...</p>
+                    <p>По итогам хакатона были определены победители...</p>
+                    <p>Мы поздравляем победителей и всех участников...</p>
+                    <p><em>Следите за обновлениями на нашем сайте...</em></p>
+                </div>
+                <a href="#" class="read-more-btn">Читать далее</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-logo-contact">
+                <div class="footer-logo">
+                    <img src="../Shared_Photos/hackathon.png" alt="HackathonRadar Logo" class="footer-logo-img"> 
+                    <span>HackathonRadar</span>
+                </div>
+                <div class="footer-contact-info">
+                    <p>Техническая поддержка:</p>
+                    <p><a href="mailto:adaev.kol@yandex.ru">adaev.kol@yandex.ru</a></p>
+                    <p><a href="tel:+79999999999">+7 (999) 999-99-99</a></p>
+                </div>
+            </div>
+            <div class="footer-column footer-main-links">
+                <a href="../Podval/ForCompany.html">Для компаний</a>
+                <a href="../Podval/Participants.html">Для участников</a>
+                <a href="../Podval/Politica.html">Политика обработки персональных данных</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 HackathonRadar. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="main_scripts.js"></script>
+</body>
+</html>

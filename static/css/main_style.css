@@ -5,6 +5,9 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    display: flex; /* Для прижатия футера */
+    flex-direction: column; /* Для прижатия футера */
+    min-height: 100vh; /* Для прижатия футера */
 }
 
 /* Стили шапки */
@@ -12,6 +15,9 @@ header {
     background-color: white;
     padding: 1em 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Можно сделать шапку "липкой" */
+    top: 0;
+    z-index: 100; /* Чтобы была поверх другого контента при прокрутке */
 }
 .header-container {
     display: flex;
@@ -48,10 +54,51 @@ nav a {
     font-size: 0.9em;
     transition: background-color 0.3s ease;
 }
-nav a:hover {
+nav a:hover,
+nav a.active { /* Стиль для активной ссылки в навигации */
     background-color: #87CEEB;
+    font-weight: bold;
 }
-.actions-section a.add-hackathon-button {
+
+.actions-section {
+    display: flex; /* Чтобы элементы внутри actions-section выстроились в ряд */
+    align-items: center;
+    gap: 15px; /* Отступ между кнопкой "Добавить Хакатон" и блоком пользователя */
+}
+
+#user-info-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+/* Стили для iframe от Telegram, если он появится */
+#user-info-container iframe {
+    border: none;
+    height: auto; /* Позволит Telegram управлять высотой кнопки */
+}
+
+.user-greeting {
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+.telegram-logout-button {
+    background-color: #f0ad4e; /* Оранжевый для выхода, для контраста */
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+.telegram-logout-button:hover {
+    background-color: #ec971f;
+}
+
+a.add-hackathon-button { /* Используем 'a', так как это ссылка */
     background-color: #90EE90;
     color: white;
     padding: 0.8em 1.5em;
@@ -59,8 +106,9 @@ nav a:hover {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    font-size: 0.9em;
 }
-.actions-section a.add-hackathon-button:hover {
+a.add-hackathon-button:hover {
     background-color: #3CB371;
 }
 
@@ -72,12 +120,13 @@ main {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Для прижатия футера */
 }
 
 /* Секция новостей */
 #news {
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 0 20px; /* Убрал верхний/нижний padding, т.к. он у main */
 }
 #news h2 {
     margin-top: 0;
@@ -91,6 +140,7 @@ main {
     border-bottom: 1px solid #ccc;
     padding-bottom: 30px;
     margin-bottom: 30px;
+    position: relative; /* Для псевдоэлемента */
 }
 .news-item:last-child {
     border-bottom: none;
@@ -101,26 +151,53 @@ main {
     content: "";
     display: block;
     width: 100%;
-    height: 10px;
-    background-color: #90EE90; /* Изменен цвет на зеленый */
+    height: 7px; /* Уменьшил толщину линии */
+    background: linear-gradient(to right, #4CAF50, #2196F3, #E91E63);
     margin-bottom: 20px;
+    border-radius: 3px; /* Слегка скруглим линию */
 }
 .news-item h3 {
     margin-top: 0;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.7em; /* Немного увеличил отступ */
+    font-size: 1.4em;
+    color: #2c3e50;
 }
-.news-item p {
-    margin-top: 15px;
-    margin-bottom: 1em;
+.news-item .news-description { /* Стили для контейнера описания */
     line-height: 1.6;
+    color: #34495e;
 }
-.news-item a {
-    color: #87CEEB;
+
+.news-item .news-description p {
+    margin-top: 0; /* Убрал верхний отступ у первого параграфа */
+    margin-bottom: 1em;
+}
+.news-item .news-description ul.news-topics {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0; /* Убираем стандартный padding у ul */
+}
+.news-item .news-description ul.news-topics li {
+    margin-bottom: 0.3em;
+}
+
+
+.news-item a.read-more-btn { /* Уточнил селектор */
+    display: inline-block; /* Чтобы отступы работали */
+    margin-top: 15px;
+    color: #3498db;
     text-decoration: none;
     font-weight: bold;
+    padding: 8px 15px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
-.news-item a:hover {
-    text-decoration: underline;
+.news-item a.read-more-btn:hover {
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
 }
 
 /* Слайдер изображений новостей */
@@ -128,11 +205,12 @@ main {
     position: relative;
     width: 100%;
     max-width: 600px;
-    margin: 15px auto 15px auto;
+    margin: 15px auto 20px auto; /* Увеличил нижний отступ */
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 8px; /* Сделал скругление побольше */
     background-color: #eee;
     aspect-ratio: 16 / 9;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .slider-images {
     display: flex;
@@ -146,14 +224,6 @@ main {
     object-fit: cover;
     flex-shrink: 0;
 }
-.news-item:before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient(to right, #4CAF50, #2196F3, #E91E63);
-    margin-bottom: 20px;
-}
 .slider-image.active {
     display: block;
 }
@@ -161,19 +231,24 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5); /* Чуть темнее фон */
     color: white;
     border: none;
-    padding: 8px 12px;
-    font-size: 1.2em;
+    padding: 10px 14px; /* Немного увеличил */
+    font-size: 1.3em; /* Немного увеличил */
     cursor: pointer;
     z-index: 10;
-    border-radius: 3px;
+    border-radius: 50%; /* Сделал круглыми */
     transition: background-color 0.3s ease;
     user-select: none;
+    width: 40px; /* Задал ширину/высоту для круглых кнопок */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .slider-control:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 .slider-control.prev {
     left: 10px;
@@ -185,7 +260,7 @@ main {
     display: none;
 }
 
-/* Стили для подвала сайта */
+/* Стили для подвала (взяты из предыдущего ответа) */
 footer {
     background-color: #2c2c2c;
     color: #b0b0b0;
@@ -194,7 +269,7 @@ footer {
     line-height: 1.6;
     width: 100%;
     box-sizing: border-box;
-    margin-top: auto; 
+    /* margin-top: auto; - управляется flex-grow у main */
 }
 
 .footer-container {
@@ -279,7 +354,7 @@ footer {
     color: #888;
 }
 
-/* Адаптивность для подвала */
+/* Адаптивность */
 @media (max-width: 992px) { 
     .footer-column.footer-main-links {
         flex-direction: column; 
@@ -301,8 +376,27 @@ footer {
     }
 }
 
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Шапка становится вертикальной */
+        gap: 10px;
+    }
+    nav ul {
+        flex-direction: column; /* Навигация тоже вертикальная */
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px; /* Небольшой отступ для навигации */
+    }
+    .actions-section {
+        margin-top: 10px; /* Отступ для кнопок действий */
+        flex-direction: column; /* Кнопки действий тоже друг под другом */
+        align-items: center;
+    }
+    #user-info-container {
+        order: -1; /* Кнопка логина/информация о пользователе будет первой в actions-section */
+        margin-bottom: 10px;
+    }
 
-@media (max-width: 767px) { 
     .footer-container {
         flex-direction: column;
         align-items: center; 
