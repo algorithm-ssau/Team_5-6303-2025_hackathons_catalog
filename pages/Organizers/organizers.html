@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HackathonRadar - Организаторы</title>
-  <link rel="stylesheet" href="../Main/main_style.css">
   <link rel="stylesheet" href="organizers_style.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
@@ -17,7 +16,7 @@
       <nav>
         <ul>
           <li><a href="../Listhackathons/hackathons.html">Список хакатонов</a></li>
-          <li><a href="../Organizers/organizers.html">Организаторы</a></li>
+          <li><a href="organizers.html" class="active">Организаторы</a></li> <!-- Класс active здесь -->
           <li><a href="../about/about.html">О проекте</a></li>
         </ul>
       </nav>
@@ -31,7 +30,6 @@
     <section class="organizers-section">
       <h2>Наши главные организаторы</h2>
       <div class="organizers-grid">
-        <!-- ВТБ -->
         <div class="organizer-card expandable" data-tooltip="Финансовый гигант. Частый организатор AI хакатонов." data-aos="fade-up">
           <img src="images_organizers/vtb.png" alt="ВТБ">
           <p><strong>ВТБ</strong> — один из крупнейших банков России. Партнёр хакатонов с самого основания проекта.</p>
@@ -41,7 +39,6 @@
           </div>
         </div>
 
-        <!-- Тинькофф -->
         <div class="organizer-card expandable" data-tooltip="Активно развивает направление финтех-стартапов." data-aos="fade-up" data-aos-delay="100">
           <img src="images_organizers/tinkoff.png" alt="Тинькофф">
           <p><strong>Тинькофф</strong> — технологичная финтех-компания, активно поддерживающая ИТ-сообщество.</p>
@@ -51,7 +48,6 @@
           </div>
         </div>
 
-        <!-- Яндекс -->
         <div class="organizer-card expandable" data-tooltip="Проводит десятки хакатонов ежегодно." data-aos="fade-up" data-aos-delay="200">
           <img src="images_organizers/yandex.png" alt="Яндекс">
           <p><strong>Яндекс</strong> — лидер в сфере интернет-сервисов. Регулярно организует крупнейшие хакатоны.</p>
@@ -61,7 +57,6 @@
           </div>
         </div>
 
-        <!-- Сбер -->
         <div class="organizer-card expandable" data-tooltip="Проводит AI и BigData хакатоны." data-aos="fade-up" data-aos-delay="300">
           <img src="images_organizers/sber.png" alt="Сбербанк">
           <p><strong>Сбер</strong> — мощный технологический партнёр, развивает направления AI и DevOps.</p>
@@ -73,7 +68,6 @@
       </div>
 
       <div class="organizers-grid last-row-centered">
-        <!-- МегаФон -->
         <div class="organizer-card expandable" data-tooltip="Спонсирует телеком-направление." data-aos="fade-up" data-aos-delay="400">
           <img src="images_organizers/megafon.png" alt="МегаФон">
           <p><strong>МегаФон</strong> — телеком-гигант, спонсор инновационных проектов и хакатонов по всей стране.</p>
@@ -85,7 +79,6 @@
       </div>
     </section>
 
-    <!-- Почему эти компании заслуживают внимание -->
     <section class="reasons-section">
       <h2>Почему эти компании заслуживают внимания?</h2>
       <div class="reasons-grid">
@@ -136,7 +129,6 @@
             <span class="partner-count">88 хакатонов</span>
         </div>
         </div>
-
         <div class="partner-card" data-aos="fade-up" data-aos-delay="300">
         <img src="images_organizers/ozon.png" alt="OZON">
         <div class="partner-info">
@@ -144,7 +136,6 @@
             <span class="partner-count">54 хакатона</span>
         </div>
         </div>
-
         <div class="partner-card" data-aos="fade-up" data-aos-delay="400">
         <img src="images_organizers/sk.png" alt="Сколково">
         <div class="partner-info">
@@ -152,7 +143,6 @@
             <span class="partner-count">41 хакатон</span>
         </div>
         </div>
-
         <div class="partner-card" data-aos="fade-up" data-aos-delay="500">
         <img src="images_organizers/jb.png" alt="JetBrains">
         <div class="partner-info">
@@ -160,7 +150,6 @@
             <span class="partner-count">37 хакатонов</span>
         </div>
         </div>
-
         <div class="partner-card" data-aos="fade-up" data-aos-delay="600">
         <img src="images_organizers/kaspersky.png" alt="Kaspersky">
         <div class="partner-info">
@@ -168,7 +157,6 @@
             <span class="partner-count">29 хакатонов</span>
         </div>
         </div>
-
         <div class="partner-card" data-aos="fade-up" data-aos-delay="700">
         <img src="images_organizers/epam.png" alt="EPAM">
         <div class="partner-info">
@@ -176,7 +164,6 @@
             <span class="partner-count">26 хакатонов</span>
         </div>
         </div>
-
         <div class="partner-card" data-aos="fade-up" data-aos-delay="800">
         <img src="images_organizers/avito.png" alt="Avito">
         <div class="partner-info">
@@ -184,17 +171,14 @@
             <span class="partner-count">24 хакатона</span>
         </div>
         </div>
-
     </div>
     </section>
-
   </main>
 
   <footer>
-    <p>&copy; 2025 HackathonRadar. Все права защищены.</p>
+    <p>© 2025 HackathonRadar. Все права защищены.</p>
   </footer>
 
-  <!-- AOS + интерактив -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init();

@@ -1,7 +1,87 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    /* max-width для main уберем, так как секции имеют свой max-width */
+    margin: 20px auto;
+    padding: 0 20px; /* Добавим боковые отступы для main */
+    background-color: transparent; /* Фон main будет как у body */
+    flex-grow: 1;
+}
+
+header {
+    background-color: white;
+    padding: 1em 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.logo-section a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+nav ul li {
+    margin-left: 0.8em;
+}
+nav ul li:first-child {
+    margin-left: 0;
+}
+nav a {
+    display: inline-block;
+    background-color: #ADD8E6;
+    color: white;
+    text-decoration: none;
+    padding: 0.6em 1.2em;
+    border-radius: 20px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+nav a:hover {
+    background-color: #87CEEB;
+}
+nav a.active {
+    background-color: #87CEEB;
+    font-weight: bold;
+}
+.actions-section a.add-hackathon-button {
+    background-color: #90EE90;
+    color: white;
+    padding: 0.8em 1.5em;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.actions-section a.add-hackathon-button:hover {
+    background-color: #3CB371;
+}
+
 .organizers-section {
     padding: 20px;
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 20px auto; /* Отступы для секции внутри main */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -112,7 +192,6 @@
     text-decoration: none;
 }
 
-/* ==== СЕКЦИЯ ДРУГИЕ ПАРТНЁРЫ ==== */
 .other-partners-section {
     max-width: 1000px;
     margin: 50px auto;
@@ -126,6 +205,8 @@
     text-align: center;
     margin-bottom: 20px;
     color: #333;
+    border-bottom: 2px solid #ADD8E6; /* Добавил подчеркивание как у других заголовков секций */
+    padding-bottom: 10px;
 }
 
 .other-partners-list {
@@ -172,18 +253,23 @@
     font-size: 0.95em;
 }
 
-/* ==== СЕКЦИЯ "Почему заслуживают внимания" ==== */
 .reasons-section {
-    margin: 80px auto 40px;
+    margin: 50px auto 40px; /* Уменьшил верхний отступ */
     max-width: 1200px;
-    padding: 0 20px;
+    padding: 20px; /* Добавил padding для секции */
+    background-color: white; /* Добавил фон и тень как у .organizers-section */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .reasons-section h2 {
     text-align: center;
-    font-size: 28px;
-    color: #222;
-    margin-bottom: 40px;
+    font-size: 1.5em; /* Сделал размер как у других h2 */
+    color: #333;
+    margin-bottom: 30px; /* Увеличил отступ снизу */
+    border-bottom: 2px solid #ADD8E6; /* Добавил подчеркивание */
+    padding-bottom: 10px;
+    margin-top: 0; /* Убрал верхний отступ, т.к. он у секции */
 }
 
 .reasons-grid {
@@ -193,7 +279,7 @@
 }
 
 .reason-card {
-    background: white;
+    background: #f9f9f9; /* Сделал фон чуть другим для контраста с секцией */
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     padding: 25px 20px;
@@ -225,4 +311,27 @@
 .reason-card p {
     font-size: 0.95em;
     color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5em 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .organizers-grid {
+        justify-content: center;
+    }
 }
