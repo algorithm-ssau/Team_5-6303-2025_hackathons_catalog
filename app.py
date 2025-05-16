@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 import os
 from datetime import datetime
 import requests
+import translators as ts # <--- НОВЫЙ ИМПОРТ
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'YOUR_VERY_SECRET_FLASK_KEY_REPLACE_ME_!@#$%^') 
@@ -13,9 +14,21 @@ def inject_current_year():
 def get_cat_fact_from_api():
     try:
         response = requests.get("https://catfact.ninja/fact", timeout=5)
-        response.raise_for_status() 
+        response.raise_for_status()
         data = response.json()
-        return data.get("fact", "Котики сегодня решили помолчать... Попробуйте позже!")
+        english_fact = data.get("fact")
+
+        if english_fact:
+            try:
+
+                russian_fact = ts.translate_text(english_fact, translator='google', to_language='ru')
+                return russian_fact
+            except Exception as e:
+                app.logger.error(f"Ошибка перевода факта о коте: {e}")
+                return english_fact # В случае ошибки перевода, возвращаем оригинал на английском
+        else:
+            return "Котики сегодня решили помолчать... Попробуйте позже!"
+
     except requests.exceptions.Timeout:
         app.logger.warning("Тайм-аут при запросе к Cat Facts API.")
         return "Не удалось загрузить факт: сервер API долго не отвечал."
@@ -29,6 +42,7 @@ def get_cat_fact_from_api():
         app.logger.error(f"Ошибка парсинга JSON от Cat Facts API")
         return "Не удалось загрузить факт о котиках (ошибка формата данных от API)."
 
+# --- МАРШРУТЫ ---
 @app.route('/')
 def index():
     initial_cat_fact = get_cat_fact_from_api() 

@@ -120,29 +120,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Код для Фактов о котах ---
-    const catFactImageElement = document.getElementById('cat-fact-image');
+ const catFactImageElement = document.getElementById('cat-fact-image');
     const catFactTextElement = document.getElementById('cat-fact-text');
     const newCatFactBtn = document.getElementById('new-cat-fact-btn');
 
     const catImageUrls = [
-        '/static/images/images_main/cat1.jpg', // Пример: предполагается, что ты создал папку cats и положил туда фото
+        '/static/images/images_main/cat1.jpg', 
         '/static/images/images_main/cat2.jpg',
         '/static/images/images_main/cat3.jpg',
         '/static/images/images_main/cat4.jpg',
         '/static/images/images_main/cat5.jpg'
-
+        // Убедись, что эти пути правильные или замени на URL с placekitten.com
     ];
 
+    let lastCatImageIndex = -1; // Переменная для хранения индекса последнего показанного изображения
+
     function getRandomCatImage() {
-        if (catImageUrls.length === 0) return ""; // Защита от пустого массива
-        const randomIndex = Math.floor(Math.random() * catImageUrls.length);
+        if (catImageUrls.length === 0) return ""; 
+        if (catImageUrls.length === 1) return catImageUrls[0]; // Если всего одно фото, всегда его показываем
+
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * catImageUrls.length);
+        } while (randomIndex === lastCatImageIndex); // Повторяем, пока новый индекс не будет отличаться от старого
+
+        lastCatImageIndex = randomIndex; // Запоминаем новый индекс
         return catImageUrls[randomIndex];
     }
 
     async function fetchAndDisplayNewCatFact() {
         if (catFactImageElement) {
             const newImageSrc = getRandomCatImage();
-            if (newImageSrc) { // Убедимся, что есть что устанавливать
+            if (newImageSrc) { 
                  catFactImageElement.src = newImageSrc;
             }
         }
@@ -166,13 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
         newCatFactBtn.addEventListener('click', fetchAndDisplayNewCatFact);
     }
 
-    // Первоначальная загрузка фото кота (факт уже загружен сервером через initial_cat_fact)
+    // Первоначальная загрузка фото кота 
+    // (факт уже загружен сервером через initial_cat_fact, если он есть)
     if (catFactImageElement && catFactTextElement && catFactTextElement.textContent.trim() !== '' && catFactTextElement.textContent !== 'Загрузка факта...') {
-        const initialImageSrc = getRandomCatImage();
+        const initialImageSrc = getRandomCatImage(); // Вызовет выбор фото, отличного от -1
         if(initialImageSrc) {
             catFactImageElement.src = initialImageSrc;
         }
-    } else if (catFactImageElement) { // Если начального факта нет (например, ошибка сервера), загружаем и факт и картинку
-         fetchAndDisplayNewCatFact();
+    } else if (catFactImageElement) { 
+         fetchAndDisplayNewCatFact(); // Загрузит и факт, и фото (вызовет getRandomCatImage)
     }
 });
