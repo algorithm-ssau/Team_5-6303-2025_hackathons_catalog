@@ -5,7 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}HackathonRadar{% endblock %}</title>
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/common_styles.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common_styles.css') }}">
+    <style>
+        /* Стили для модального окна */
+        .modal {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
     {% block head_styles %}{% endblock %}
     {% block additional_head_scripts %}{% endblock %}
 </head>
@@ -46,8 +81,8 @@
                 </div>
             </div>
             <div class="footer-column footer-main-links">
-                <a href="{{ url_for('for_company_page') }}">Для компаний</a>
-                <a href="{{ url_for('participants_page') }}">Для участников</a>
+                <a href="#" class="open-modal" data-modal="company-modal">Для компаний</a>
+                <a href="#" class="open-modal" data-modal="participants-modal">Для участников</a>
                 <a href="{{ url_for('privacy_policy_page') }}">Политика обработки персональных данных</a>
             </div>
         </div>
@@ -55,7 +90,50 @@
             <p>© {{ current_year }} HackathonRadar. Все права защищены.</p>
         </div>
     </footer>
-    
+
+    <!-- Модальные окна -->
+    <div id="company-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Для компаний</h2>
+            <p>Информация для компаний...</p>
+        </div>
+    </div>
+
+    <div id="participants-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Для участников</h2>
+            <p>Информация для участников...</p>
+        </div>
+    </div>
+
+    <script>
+        // Открытие и закрытие модальных окон
+        var modals = document.querySelectorAll('.modal');
+        var btns = document.querySelectorAll('.open-modal');
+        var spans = document.getElementsByClassName("close");
+
+        btns.forEach(function(btn) {
+            btn.onclick = function() {
+                var modalId = this.getAttribute('data-modal');
+                document.getElementById(modalId).style.display = "block";
+            };
+        });
+
+        for (var i = 0; i < spans.length; i++) {
+            spans[i].onclick = function() {
+                this.parentElement.parentElement.style.display = "none";
+            };
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        };
+    </script>
+
     {% block body_scripts %}{% endblock %}
 </body>
 </html>
