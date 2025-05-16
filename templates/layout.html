@@ -5,22 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}HackathonRadar{% endblock %}</title>
     
-    <!-- Общие стили (предполагается, что ты их вынесешь или скопируешь сюда) -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/common_styles.css') }}"> -->
-    
-    <!-- Стили для конкретной страницы -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common_styles.css') }}"> 
     {% block head_styles %}{% endblock %}
-
-    <!-- Скрипт Telegram Login -->
-    <!-- ЗАМЕНИ YOUR_BOT_USERNAME на username твоего бота -->
-    <script async src="https://telegram.org/js/telegram-widget.js?22" 
-            data-telegram-login="HackathonRadarLoginBot" 
-            data-size="medium" 
-            data-auth-url="{{ url_for('telegram_auth', _external=True) }}" 
-            data-request-access="write"
-            data-userpic="false">
-    </script>
-    
     {% block additional_head_scripts %}{% endblock %}
 </head>
 <body>
@@ -34,22 +20,9 @@
                     <li><a href="{{ url_for('list_hackathons') }}" {% if active_page == 'hackathons' %}class="active"{% endif %}>Список хакатонов</a></li>
                     <li><a href="{{ url_for('organizers_page') }}" {% if active_page == 'organizers' %}class="active"{% endif %}>Организаторы</a></li>
                     <li><a href="{{ url_for('about_page') }}" {% if active_page == 'about' %}class="active"{% endif %}>О проекте</a></li>
-                    {% if user %}
-                    <li id="my-hackathons-link" style="display: list-item;"><a href="#">Мои хакатоны</a></li>
-                    {% else %}
-                    <li id="my-hackathons-link" style="display: none;"><a href="#">Мои хакатоны</a></li>
-                    {% endif %}
                 </ul>
             </nav>
             <div class="actions-section">
-                <div id="user-info-container">
-                    {% if user %}
-                        <div class="user-greeting">Привет, {{ user.first_name }}!</div>
-                        <a href="{{ url_for('logout') }}" class="telegram-logout-button">Выйти</a>
-                    {% else %}
-                        <!-- Кнопка Telegram Login будет вставлена скриптом Telegram, если этот div пуст -->
-                    {% endif %}
-                </div>
                 <a href="https://t.me/nikoladochka" target="_blank" class="add-hackathon-button">Добавить Хакатон</a>
             </div>
         </div>
@@ -63,7 +36,6 @@
         <div class="footer-container">
             <div class="footer-column footer-logo-contact">
                 <div class="footer-logo">
-                    <!-- ЗАМЕНИ ПУТЬ НА СВОЙ ЛОГОТИП -->
                     <img src="{{ url_for('static', filename='images/Shared_Photos/hackathon.png') }}" alt="HackathonRadar Logo" class="footer-logo-img"> 
                     <span>HackathonRadar</span>
                 </div>
