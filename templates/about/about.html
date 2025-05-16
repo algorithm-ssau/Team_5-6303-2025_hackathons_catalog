@@ -4,9 +4,49 @@
 
 {% block head_styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about_style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+
+  <div class="hero-content">
+    <h1 data-aos="fade-down">HackathonRadar — все хакатоны России в одном месте</h1>
+    <p class="subtitle" data-aos="fade" data-aos-delay="300">Находите, участвуйте, побеждайте</p>
+    
+    <div class="stats">
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="500" style="--color: #4CAF50">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="number" data-count="500">0</span>
+        <span class="label">Мероприятий</span>
+      </div>
+      
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="600" style="--color: #2196F3">
+        <i class="fas fa-building"></i>
+        <span class="number" data-count="150">0</span>
+        <span class="label">Компаний-партнёров</span>
+      </div>
+      
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="700" style="--color: #FF5722">
+        <i class="fas fa-users"></i>
+        <span class="number" data-count="10000">0</span>
+        <span class="label">Участников</span>
+      </div>
+      
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="800" style="--color: #9C27B0">
+        <i class="fas fa-sync-alt"></i>
+        <span class="number" data-count="24">0</span>
+        <span class="label">Обновление в часах</span>
+      </div>
+    </div>
+
+    <a href="#hackathons" class="cta-button" data-aos="zoom-in" data-aos-delay="1000">Смотреть хакатоны</a>
+  </div>
+  
+  <div class="scroll-down" data-aos="fade" data-aos-delay="1500">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
 <h1>О проекте HackathonRadar</h1>
 
 <div class="project-description">
@@ -23,4 +63,33 @@
 {# {% block body_scripts %}
     Если для этой страницы нужен JS, добавь его сюда
     <script src="{{ url_for('static', filename='js/about_scripts.js') }}"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const animateCounters = () => {
+                    const counters = document.querySelectorAll('.number');
+                    const speed = 200;
+                    
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-count');
+                        const count = +counter.innerText;
+                        const increment = target / speed;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + increment);
+                            setTimeout(animateCounters, 1);
+                        } else {
+                            counter.innerText = target + (counter.getAttribute('data-count') === '24' ? '' : '+');
+                        }
+                    });
+                };
+
+                setTimeout(animateCounters, 500);
+            });
+        </script>
 {% endblock %} #}
