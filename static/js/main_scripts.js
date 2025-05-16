@@ -130,10 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '/static/images/images_main/cat3.jpg',
         '/static/images/images_main/cat4.jpg',
         '/static/images/images_main/cat5.jpg'
-        // Если используешь placekitten, то пути будут абсолютными:
-        // 'https://placekitten.com/400/300?image=1', 
-        // 'https://placekitten.com/400/300?image=2',
-        // и т.д.
+
     ];
 
     function getRandomCatImage() {
