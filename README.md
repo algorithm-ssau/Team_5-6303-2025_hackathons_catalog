@@ -3,11 +3,11 @@
 
 **Участники команды:**
 
+NikolayAdaev - Адаев Николай - FullStack Dev, TeamLead
+
 CarvassBot - Чугунов Андрей - FullStack Dev
 
 PozhidaevNikolay - Пожидаев Николай - FullStack Dev
-
-NikolayAdaev - Адаев Николай - FullStack Dev, TeamLead
 
 prilezhnyy-uchenik - Сараев Антон - FullStack Dev
 
