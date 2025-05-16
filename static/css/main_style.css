@@ -5,19 +5,14 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
-    display: flex; /* Для прижатия футера */
-    flex-direction: column; /* Для прижатия футера */
-    min-height: 100vh; /* Для прижатия футера */
 }
 
-/* Стили шапки */
+/* Стили шапки (Если не вынесены в common_styles.css) */
+/* Если common_styles.css используется и содержит стили шапки, этот блок можно удалить отсюда */
 header {
     background-color: white;
     padding: 1em 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky; /* Можно сделать шапку "липкой" */
-    top: 0;
-    z-index: 100; /* Чтобы была поверх другого контента при прокрутке */
 }
 .header-container {
     display: flex;
@@ -54,51 +49,23 @@ nav a {
     font-size: 0.9em;
     transition: background-color 0.3s ease;
 }
-nav a:hover,
-nav a.active { /* Стиль для активной ссылки в навигации */
+nav a:hover {
     background-color: #87CEEB;
+}
+/* Если используешь переменную active_page из Flask для layout.html: */
+nav a.active { 
+    background-color: #007bff; /* Или другой цвет для активной ссылки */
     font-weight: bold;
 }
 
 .actions-section {
-    display: flex; /* Чтобы элементы внутри actions-section выстроились в ряд */
-    align-items: center;
-    gap: 15px; /* Отступ между кнопкой "Добавить Хакатон" и блоком пользователя */
-}
-
-#user-info-container {
+    /* Теперь здесь только одна кнопка "Добавить Хакатон" */
+    /* Можно оставить flex для выравнивания, если в будущем что-то добавится */
     display: flex;
     align-items: center;
-    gap: 10px; 
-}
-/* Стили для iframe от Telegram, если он появится */
-#user-info-container iframe {
-    border: none;
-    height: auto; /* Позволит Telegram управлять высотой кнопки */
 }
 
-.user-greeting {
-    color: #333;
-    font-weight: bold;
-    margin-right: 10px;
-    font-size: 0.9em;
-}
-
-.telegram-logout-button {
-    background-color: #f0ad4e; /* Оранжевый для выхода, для контраста */
-    color: white;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.85em;
-    font-weight: bold;
-}
-.telegram-logout-button:hover {
-    background-color: #ec971f;
-}
-
-a.add-hackathon-button { /* Используем 'a', так как это ссылка */
+a.add-hackathon-button { /* Убрали .actions-section для специфичности, так как кнопка одна */
     background-color: #90EE90;
     color: white;
     padding: 0.8em 1.5em;
@@ -106,11 +73,13 @@ a.add-hackathon-button { /* Используем 'a', так как это сс�
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    font-size: 0.9em;
 }
 a.add-hackathon-button:hover {
     background-color: #3CB371;
 }
+/* Стили для #user-info-container, .user-greeting, .telegram-logout-button УДАЛЕНЫ, 
+   так как этих элементов больше нет в шапке в таком виде */
+
 
 /* Основной контент */
 main {
@@ -120,13 +89,12 @@ main {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex-grow: 1; /* Для прижатия футера */
 }
 
 /* Секция новостей */
 #news {
     margin-bottom: 30px;
-    padding: 0 20px; /* Убрал верхний/нижний padding, т.к. он у main */
+    padding: 20px; /* Можно убрать, если main уже имеет padding */
 }
 #news h2 {
     margin-top: 0;
@@ -140,7 +108,6 @@ main {
     border-bottom: 1px solid #ccc;
     padding-bottom: 30px;
     margin-bottom: 30px;
-    position: relative; /* Для псевдоэлемента */
 }
 .news-item:last-child {
     border-bottom: none;
@@ -151,53 +118,39 @@ main {
     content: "";
     display: block;
     width: 100%;
-    height: 7px; /* Уменьшил толщину линии */
+    height: 10px;
     background: linear-gradient(to right, #4CAF50, #2196F3, #E91E63);
     margin-bottom: 20px;
-    border-radius: 3px; /* Слегка скруглим линию */
 }
 .news-item h3 {
     margin-top: 0;
-    margin-bottom: 0.7em; /* Немного увеличил отступ */
-    font-size: 1.4em;
-    color: #2c3e50;
+    margin-bottom: 0.5em;
 }
-.news-item .news-description { /* Стили для контейнера описания */
+.news-item .news-description { /* Используем класс для блока описания */
     line-height: 1.6;
-    color: #34495e;
 }
-
 .news-item .news-description p {
-    margin-top: 0; /* Убрал верхний отступ у первого параграфа */
+    margin-top: 0; /* Убрал отступ сверху для первого параграфа в описании */
     margin-bottom: 1em;
 }
-.news-item .news-description ul.news-topics {
+.news-item .news-description p:last-child {
+    margin-bottom: 0;
+}
+.news-item .news-description ul.news-topics { /* Стиль для списка в новостях */
     list-style: disc;
-    margin-left: 20px;
+    padding-left: 20px; /* Стандартный отступ для ul */
     margin-top: 0.5em;
     margin-bottom: 1em;
-    padding-left: 0; /* Убираем стандартный padding у ul */
 }
-.news-item .news-description ul.news-topics li {
-    margin-bottom: 0.3em;
-}
-
-
-.news-item a.read-more-btn { /* Уточнил селектор */
-    display: inline-block; /* Чтобы отступы работали */
-    margin-top: 15px;
-    color: #3498db;
+.news-item a.read-more-btn { /* Более специфичный селектор для кнопки "Читать далее" */
+    color: #87CEEB;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 15px;
-    border: 1px solid #3498db;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    display: inline-block; /* Чтобы отступы работали корректно */
+    margin-top: 10px;
 }
 .news-item a.read-more-btn:hover {
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 /* Слайдер изображений новостей */
@@ -205,12 +158,11 @@ main {
     position: relative;
     width: 100%;
     max-width: 600px;
-    margin: 15px auto 20px auto; /* Увеличил нижний отступ */
+    margin: 15px auto 20px auto; /* Увеличил немного нижний отступ */
     overflow: hidden;
-    border-radius: 8px; /* Сделал скругление побольше */
+    border-radius: 5px;
     background-color: #eee;
     aspect-ratio: 16 / 9;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .slider-images {
     display: flex;
@@ -231,24 +183,19 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Чуть темнее фон */
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     border: none;
-    padding: 10px 14px; /* Немного увеличил */
-    font-size: 1.3em; /* Немного увеличил */
+    padding: 8px 12px;
+    font-size: 1.2em;
     cursor: pointer;
     z-index: 10;
-    border-radius: 50%; /* Сделал круглыми */
+    border-radius: 3px;
     transition: background-color 0.3s ease;
     user-select: none;
-    width: 40px; /* Задал ширину/высоту для круглых кнопок */
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .slider-control:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 .slider-control.prev {
     left: 10px;
@@ -260,159 +207,138 @@ main {
     display: none;
 }
 
-/* Стили для подвала (взяты из предыдущего ответа) */
+/* Стили для секции фактов о котах */
+#cat-facts-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    text-align: center; 
+}
+#cat-facts-section h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #FFC107; 
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+.cat-fact-card {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 700px; 
+    margin: 0 auto; 
+}
+.cat-fact-image-container {
+    width: 100%;
+    max-width: 350px; 
+    height: 250px;    
+    margin-bottom: 20px;
+    border-radius: 6px;
+    overflow: hidden; 
+    background-color: #e0e0e0; 
+}
+#cat-fact-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 6px;
+}
+.cat-fact-text-container {
+    text-align: left; 
+}
+#cat-fact-text {
+    font-size: 1.1em;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    min-height: 60px; 
+}
+#new-cat-fact-btn {
+    background-color: #FF9800; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#new-cat-fact-btn:hover {
+    background-color: #F57C00; 
+}
+
+/* Адаптивность для карточки с фактом */
+@media (min-width: 600px) {
+    .cat-fact-card {
+        flex-direction: row; 
+        text-align: left; 
+        gap: 20px; 
+    }
+    .cat-fact-image-container {
+        width: 40%; 
+        max-width: 250px; 
+        height: auto; 
+        aspect-ratio: 1 / 1; 
+        margin-bottom: 0;
+    }
+    .cat-fact-text-container {
+        width: 60%; 
+    }
+}
+
+/* Стили подвала (Если не вынесены в common_styles.css) */
 footer {
-    background-color: #2c2c2c;
-    color: #b0b0b0;
-    padding: 30px 20px 10px 20px;
+    background-color: #2c2c2c; /* Темно-серый, как на примере */
+    color: #b0b0b0; /* Светло-серый для текста */
+    padding: 30px 20px 10px 20px; /* Отступы: верх, бока, низ */
     font-size: 0.9em;
     line-height: 1.6;
     width: 100%;
-    box-sizing: border-box;
-    /* margin-top: auto; - управляется flex-grow у main */
+    box-sizing: border-box; /* Чтобы padding не влиял на общую ширину */
+    margin-top: auto; /* Помогает прижать футер к низу, если body - flex-контейнер */
 }
-
 .footer-container {
     max-width: 1200px;
-    margin: 0 auto 5px auto; 
+    margin: 0 auto 5px auto; /* Отступ снизу перед copyright */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
 }
+.footer-column { flex: 1;}
+.footer-column.footer-logo-contact { flex-grow: 0; flex-shrink: 0; margin-right: 20px; }
+.footer-logo-contact .footer-logo { display: flex; align-items: center; margin-bottom: 15px; }
+.footer-logo-img { width: 35px; height: 35px; margin-right: 10px; }
+.footer-logo-contact .footer-logo span { font-size: 1.3em; font-weight: bold; color: #ffffff; }
+.footer-contact-info p { margin: 4px 0; font-size: 0.9em; }
+.footer-contact-info a { color: #66aaff; text-decoration: none; }
+.footer-contact-info a:hover { text-decoration: underline; }
+.footer-column.footer-main-links { display: flex; flex-direction: row; align-items: flex-start; gap: 25px; flex-wrap: wrap; margin-left: auto; }
+.footer-main-links a { color: #b0b0b0; text-decoration: none; font-size: 0.95em; transition: color 0.2s ease; padding: 5px 0; white-space: nowrap; }
+.footer-main-links a:hover { color: #ffffff; text-decoration: underline; }
+.footer-bottom { text-align: center; padding-top: 5px; border-top: none; font-size: 0.85em; color: #888; }
 
-.footer-column { 
-    flex: 1;
-}
-
-.footer-column.footer-logo-contact {
-    flex-grow: 0; 
-    flex-shrink: 0;
-    margin-right: 20px; 
-}
-
-.footer-logo-contact .footer-logo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.footer-logo-img {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-}
-
-.footer-logo-contact .footer-logo span {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.footer-contact-info p {
-    margin: 4px 0;
-    font-size: 0.9em;
-}
-
-.footer-contact-info a {
-    color: #66aaff;
-    text-decoration: none;
-}
-.footer-contact-info a:hover {
-    text-decoration: underline;
-}
-
-.footer-column.footer-main-links {
-    display: flex;
-    flex-direction: row; 
-    align-items: flex-start; 
-    gap: 25px; 
-    flex-wrap: wrap; 
-    margin-left: auto; 
-}
-
-.footer-main-links a {
-    color: #b0b0b0;
-    text-decoration: none;
-    font-size: 0.95em;
-    transition: color 0.2s ease;
-    padding: 5px 0; 
-    white-space: nowrap; 
-}
-
-.footer-main-links a:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 5px;      
-    border-top: none;       
-    font-size: 0.85em;
-    color: #888;
-}
-
-/* Адаптивность */
+/* Адаптивность для шапки и подвала (Если не вынесены в common_styles.css) */
 @media (max-width: 992px) { 
-    .footer-column.footer-main-links {
-        flex-direction: column; 
-        align-items: flex-start;
-        margin-left: 0; 
-        margin-top: 20px; 
-        width:100%; 
-    }
-     .footer-container {
-        justify-content: flex-start; 
-    }
-    .footer-column.footer-logo-contact {
-        margin-right: 0;
-        width: 100%; 
-        text-align: center; 
-    }
-     .footer-logo-contact .footer-logo {
-        justify-content: center;
-    }
+    .header-container nav ul { margin-bottom: 10px; }
+    .footer-column.footer-main-links { flex-direction: column; align-items: flex-start; margin-left: 0; margin-top: 20px; width:100%; }
+    .footer-container { justify-content: flex-start; }
+    .footer-column.footer-logo-contact { margin-right: 0; width: 100%; text-align: center; }
+    .footer-logo-contact .footer-logo { justify-content: center; }
 }
-
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column; /* Шапка становится вертикальной */
-        gap: 10px;
-    }
-    nav ul {
-        flex-direction: column; /* Навигация тоже вертикальная */
-        align-items: center;
-        gap: 5px;
-        margin-top: 10px; /* Небольшой отступ для навигации */
-    }
-    .actions-section {
-        margin-top: 10px; /* Отступ для кнопок действий */
-        flex-direction: column; /* Кнопки действий тоже друг под другом */
-        align-items: center;
-    }
-    #user-info-container {
-        order: -1; /* Кнопка логина/информация о пользователе будет первой в actions-section */
-        margin-bottom: 10px;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        align-items: center; 
-        text-align: center; 
-    }
-    .footer-column.footer-logo-contact {
-        margin-bottom: 20px;
-    }
-    .footer-column.footer-main-links {
-        align-items: center;
-        margin-top: 10px; 
-    }
-    .footer-main-links a {
-        font-size: 0.9em; 
-    }
-    .footer-bottom {
-        padding-top: 10px; 
-    }
+@media (max-width: 767px) {
+    .header-container { flex-direction: column; gap: 10px; }
+    nav ul { flex-direction: column; align-items: center; gap: 5px; }
+    .actions-section { flex-direction: column; gap: 10px; margin-top: 10px; }
+    .footer-container { flex-direction: column; align-items: center; text-align: center; }
+    .footer-column.footer-logo-contact { margin-bottom: 20px; }
+    .footer-column.footer-main-links { align-items: center; margin-top: 10px; }
+    .footer-main-links a { font-size: 0.9em; }
+    .footer-bottom { padding-top: 10px; }
 }

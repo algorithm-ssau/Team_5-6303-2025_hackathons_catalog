@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Существующий код для слайдера новостей ---
+    // --- Код для слайдера новостей ---
     const newsSliders = document.querySelectorAll('.news-slider');
     newsSliders.forEach(slider => {
         const images = slider.querySelectorAll('.slider-image');
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index >= images.length) index = 0;
             else if (index < 0) index = images.length - 1;
 
-            if (images[currentIndex]) images[currentIndex].classList.remove('active'); // Проверка на существование
-            if (images[index]) images[index].classList.add('active'); // Проверка на существование
+            if (images[currentIndex]) images[currentIndex].classList.remove('active');
+            if (images[index]) images[index].classList.add('active');
             currentIndex = index;
         }
 
@@ -30,16 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (prevButton) prevButton.addEventListener('click', () => showImage(currentIndex - 1));
         }
         
-        let activeImageExists = false;
-        images.forEach(img => {
-            if (img.classList.contains('active')) activeImageExists = true;
-        });
-        if (images.length > 0 && !activeImageExists) {
-            images[0].classList.add('active');
+        // Показываем первое изображение, если оно есть и еще не активно
+        if (images.length > 0 && !slider.querySelector('.slider-image.active')) {
+             if(images[0]) images[0].classList.add('active');
         }
     });
 
-    // --- Существующий код для "Читать далее" ---
+    // --- Код для "Читать далее" ---
     const newsItems = document.querySelectorAll('.news-item');
     const maxChars = 130; 
 
@@ -63,42 +60,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const nodes = Array.from(descriptionElement.childNodes);
 
             for (const node of nodes) {
-                let nodeTextContent = "";
-                let nodeHTML = "";
-
                 if (node.nodeType === Node.TEXT_NODE) {
-                    nodeTextContent = node.textContent;
-                    nodeHTML = node.textContent;
-                } else if (node.nodeType === Node.ELEMENT_NODE) {
-                    nodeTextContent = node.textContent || node.innerText || "";
-                    nodeHTML = node.outerHTML;
-                }
-
-                if (currentLength + nodeTextContent.length > maxChars) {
-                    const remainingChars = maxChars - currentLength;
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        shortContentHTML += nodeTextContent.substring(0, remainingChars) + "...";
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        // Упрощенная логика для элементов: если текст внутри слишком длинный, добавляем многоточие
-                        // и не добавляем сам элемент, чтобы не ломать теги.
-                        // Для более точной обрезки HTML потребовался бы сложный парсер.
-                        shortContentHTML += "...";
+                    if (currentLength + node.textContent.length > maxChars) {
+                        shortContentHTML += node.textContent.substring(0, maxChars - currentLength) + "...";
+                        break;
+                    } else {
+                        shortContentHTML += node.textContent;
+                        currentLength += node.textContent.length;
                     }
-                    break; 
-                } else {
-                    shortContentHTML += nodeHTML;
-                    currentLength += nodeTextContent.length;
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    const outerHTML = node.outerHTML;
+                    const textContentOfNode = node.textContent || node.innerText || "";
+                    if (currentLength + textContentOfNode.length > maxChars && currentLength < maxChars) {
+                        let partialText = textContentOfNode.substring(0, maxChars - currentLength);
+                        let tempNode = node.cloneNode(false); 
+                        tempNode.textContent = partialText + "...";
+                        shortContentHTML += tempNode.outerHTML;
+                        break;
+                    } else if (currentLength + textContentOfNode.length <= maxChars) {
+                        shortContentHTML += outerHTML;
+                        currentLength += textContentOfNode.length;
+                    } else {
+                        if(!shortContentHTML.endsWith("...")) shortContentHTML += "...";
+                        break;
+                    }
                 }
-                 if (currentLength >= maxChars) { // Если уже набрали или превысили
-                    if(!shortContentHTML.endsWith("...") && shortContentHTML !== fullContentHTML) shortContentHTML += "...";
+                 if (currentLength >= maxChars) {
+                    if(!shortContentHTML.endsWith("...")) shortContentHTML += "...";
                     break;
                 }
             }
-             // Если после цикла многоточие не добавлено, а текст реально длиннее
-            if (!shortContentHTML.endsWith("...") && fullTextContent.length > maxChars && shortContentHTML.length >= maxChars ) {
-                 shortContentHTML = shortContentHTML.substring(0, maxChars -3) + "...";
+            if (!shortContentHTML.endsWith("...") && fullTextContent.length > maxChars && currentLength < maxChars) {
+                 shortContentHTML = shortContentHTML.substring(0, maxChars) + "...";
             }
-
 
             descriptionElement.dataset.fullContentHTML = fullContentHTML;
             descriptionElement.dataset.shortContentHTML = shortContentHTML;
@@ -125,84 +119,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Telegram Login ---
-    const userInfoContainer = document.getElementById('user-info-container');
-    const myHackathonsLink = document.getElementById('my-hackathons-link');
+    // --- Код для Фактов о котах ---
+    const catFactImageElement = document.getElementById('cat-fact-image');
+    const catFactTextElement = document.getElementById('cat-fact-text');
+    const newCatFactBtn = document.getElementById('new-cat-fact-btn');
 
-    window.onTelegramAuth = function(user) {
-        console.log('Logged in as ' + user.first_name + ' ' + (user.last_name || '') + ' (' + (user.username || 'N/A') + ', ID: ' + user.id + ')');
-        
-        if (userInfoContainer) {
-            userInfoContainer.innerHTML = `
-                <div class="user-greeting">Привет, ${user.first_name}!</div>
-                <button id="logout-button" class="telegram-logout-button">Выйти</button>
-            `;
-            
-            if (myHackathonsLink) {
-                myHackathonsLink.style.display = 'list-item'; 
-            }
+    const catImageUrls = [
+        '/static/images/images_main/cat1.jpg', // Пример: предполагается, что ты создал папку cats и положил туда фото
+        '/static/images/images_main/cat2.jpg',
+        '/static/images/images_main/cat3.jpg',
+        '/static/images/images_main/cat4.jpg',
+        '/static/images/images_main/cat5.jpg'
+        // Если используешь placekitten, то пути будут абсолютными:
+        // 'https://placekitten.com/400/300?image=1', 
+        // 'https://placekitten.com/400/300?image=2',
+        // и т.д.
+    ];
 
-            const logoutButton = document.getElementById('logout-button');
-            if (logoutButton) {
-                logoutButton.addEventListener('click', () => {
-                    // Очищаем информацию о пользователе
-                    userInfoContainer.innerHTML = ''; 
-                    // Скрываем ссылку "Мои хакатоны"
-                    if (myHackathonsLink) {
-                        myHackathonsLink.style.display = 'none';
-                    }
-                    // Удаляем данные пользователя из localStorage
-                    localStorage.removeItem('telegramUser');
-                    console.log('User logged out');
-                    // После выхода, Telegram виджет должен автоматически (или после перезагрузки страницы)
-                    // снова отобразить кнопку логина в #user-info-container,
-                    // так как он ищет этот элемент и атрибуты в своем скрипте в <head>.
-                    // Явный вызов renderTelegramLoginButton() здесь может быть не нужен,
-                    // но если кнопка не появляется сама, можно раскомментировать.
-                    // renderTelegramLoginButton(); // <-- Убедимся, что она не пытается создать новый <script> тег
-                });
-            }
-        }
-        localStorage.setItem('telegramUser', JSON.stringify(user));
+    function getRandomCatImage() {
+        if (catImageUrls.length === 0) return ""; // Защита от пустого массива
+        const randomIndex = Math.floor(Math.random() * catImageUrls.length);
+        return catImageUrls[randomIndex];
     }
 
-    // Эта функция больше не должна создавать скрипт,
-    // так как мы полагаемся на скрипт в <head> для инициализации виджета.
-    // Она может использоваться для каких-то других целей, если нужно, или ее можно удалить,
-    // если она не делает ничего другого.
-    function renderTelegramLoginButton() {
-        if (userInfoContainer) {
-            // Если контейнер пуст и Telegram сам не вставил кнопку,
-            // это может указывать на проблему с конфигурацией скрипта в <head>
-            // или с тем, как Telegram Widget API взаимодействует с DOM.
-            // На данном этапе, если скрипт в <head> настроен правильно,
-            // он должен автоматически поместить кнопку в #user-info-container.
-            // Мы можем просто убедиться, что контейнер пуст.
-            if (userInfoContainer.innerHTML.trim() === '' && !userInfoContainer.querySelector('iframe[id^="telegram-login"]')) {
-                console.log("#user-info-container is empty, Telegram widget should initialize here.");
-                // НЕ создаем скрипт здесь, так как это делает скрипт в <head>
+    async function fetchAndDisplayNewCatFact() {
+        if (catFactImageElement) {
+            const newImageSrc = getRandomCatImage();
+            if (newImageSrc) { // Убедимся, что есть что устанавливать
+                 catFactImageElement.src = newImageSrc;
+            }
+        }
+        if (catFactTextElement) {
+            catFactTextElement.textContent = 'Загрузка факта...'; 
+            try {
+                const response = await fetch('/get-new-cat-fact'); 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                catFactTextElement.textContent = data.fact;
+            } catch (error) {
+                console.error("Ошибка при загрузке факта о коте:", error);
+                catFactTextElement.textContent = 'Не удалось загрузить факт. Попробуйте еще раз!';
             }
         }
     }
 
-    // Проверяем, есть ли сохраненный пользователь при загрузке страницы
-    const storedUserJSON = localStorage.getItem('telegramUser');
-    if (storedUserJSON) {
-        try {
-            const storedUser = JSON.parse(storedUserJSON);
-            window.onTelegramAuth(storedUser); 
-        } catch (e) {
-            console.error("Error parsing stored user data:", e);
-            localStorage.removeItem('telegramUser'); 
-            // Если данные некорректны, очищаем контейнер, чтобы Telegram мог снова вставить кнопку
-            if(userInfoContainer) userInfoContainer.innerHTML = '';
-            // renderTelegramLoginButton(); // Вызов здесь не нужен, если Telegram Widget API в <head> все делает сам
+    if (newCatFactBtn) {
+        newCatFactBtn.addEventListener('click', fetchAndDisplayNewCatFact);
+    }
+
+    // Первоначальная загрузка фото кота (факт уже загружен сервером через initial_cat_fact)
+    if (catFactImageElement && catFactTextElement && catFactTextElement.textContent.trim() !== '' && catFactTextElement.textContent !== 'Загрузка факта...') {
+        const initialImageSrc = getRandomCatImage();
+        if(initialImageSrc) {
+            catFactImageElement.src = initialImageSrc;
         }
-    } else {
-        // Если пользователя нет в localStorage, Telegram Widget API,
-        // подключенный в <head>, должен сам найти div#user-info-container и вставить туда кнопку.
-        // Убедимся, что контейнер пуст для него.
-        if(userInfoContainer) userInfoContainer.innerHTML = '';
-        // renderTelegramLoginButton(); // Вызов здесь не нужен
+    } else if (catFactImageElement) { // Если начального факта нет (например, ошибка сервера), загружаем и факт и картинку
+         fetchAndDisplayNewCatFact();
     }
 });
