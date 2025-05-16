@@ -407,6 +407,29 @@ footer {
     color: #888;
 }
 
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: none; /* скрыта по умолчанию */
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#backToTop:hover {
+  background-color: #0056b3;
+}
+
+
 /* Адаптивность для подвала */
 @media (max-width: 992px) { 
     .footer-column.footer-main-links {
