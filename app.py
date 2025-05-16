@@ -2,7 +2,7 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 import os
 from datetime import datetime
 import requests
-import translators as ts # <--- НОВЫЙ ИМПОРТ
+import translators as ts
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'YOUR_VERY_SECRET_FLASK_KEY_REPLACE_ME_!@#$%^') 

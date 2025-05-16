@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         '/static/images/images_main/cat3.jpg',
         '/static/images/images_main/cat4.jpg',
         '/static/images/images_main/cat5.jpg'
-        // Убедись, что эти пути правильные или замени на URL с placekitten.com
     ];
 
     let lastCatImageIndex = -1; // Переменная для хранения индекса последнего показанного изображения
@@ -176,13 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Первоначальная загрузка фото кота 
-    // (факт уже загружен сервером через initial_cat_fact, если он есть)
     if (catFactImageElement && catFactTextElement && catFactTextElement.textContent.trim() !== '' && catFactTextElement.textContent !== 'Загрузка факта...') {
-        const initialImageSrc = getRandomCatImage(); // Вызовет выбор фото, отличного от -1
+        const initialImageSrc = getRandomCatImage();
         if(initialImageSrc) {
             catFactImageElement.src = initialImageSrc;
         }
     } else if (catFactImageElement) { 
-         fetchAndDisplayNewCatFact(); // Загрузит и факт, и фото (вызовет getRandomCatImage)
+         fetchAndDisplayNewCatFact();
     }
 });
