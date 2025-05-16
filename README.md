@@ -3,15 +3,15 @@
 
 **Участники команды:**
 
-CarvassBot - Чугунов Андрей
+CarvassBot - Чугунов Андрей - FullStack Dev
 
-PozhidaevNikolay - Пожидаев Николай
+PozhidaevNikolay - Пожидаев Николай - FullStack Dev
 
-NikolayAdaev - Адаев Николай
+NikolayAdaev - Адаев Николай - FullStack Dev, TeamLead
 
-prilezhnyy-uchenik - Сараев Антон
+prilezhnyy-uchenik - Сараев Антон - FullStack Dev
 
-bib63 - Устинов Никита 
+bib63 - Устинов Никита - FullStack Dev
 
 **О проекте**
 
